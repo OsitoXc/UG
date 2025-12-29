@@ -17,4 +17,4 @@ jobs:
           -d '{
             "content": "📢 **United Glory · News**\nNuevo comunicado oficial disponible.\n\n👉🏻 [United Glory News](https://ugesport.icu/news/)\n\n<:nkKannaPoint:1275457758967238747> @everyone"
           }' \
-          https://discord.com/api/webhooks/1450886959953350777/A49F0KxLzV5Hfc9PSlLmWu55JSelEIWlqvEAEc6BElSlyasHp-aGhI_8c_9v_JyOSP46
+          https://discord.com/api/webhooks/1446209741461131506/wUa-IYbAso9PPrzXBb_C5-e5gmFd8qQNpDNfgwDVGcSzJva_whwFpI5lfb2pD0aDRFgo
