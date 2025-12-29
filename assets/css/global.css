@@ -325,3 +325,75 @@ body{
     opacity:.4;
   }
 }
+
+.avatar-square{
+  width:110px;
+  height:110px;
+  border-radius:14px; /* no circular */
+  object-fit:cover;
+  border:2px solid rgba(255,255,255,.12);
+}
+
+.badge{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  z-index:4;
+  overflow:hidden;
+}
+
+.badge-gold{
+  background:linear-gradient(
+    135deg,
+    #facc15,
+    #fde68a,
+    #f59e0b
+  );
+  box-shadow:
+    0 0 8px rgba(250,204,21,.55),
+    inset 0 0 6px rgba(255,255,255,.4);
+}
+
+.badge-red{
+  background:linear-gradient(
+    135deg,
+    #ef4444,
+    #fecaca,
+    #b91c1c
+  );
+  box-shadow:
+    0 0 8px rgba(239,68,68,.55),
+    inset 0 0 6px rgba(255,255,255,.4);
+}
+
+.badge::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-60%;
+  width:40%;
+  height:180%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.8),
+    transparent
+  );
+  transform:rotate(25deg);
+  animation:badgeShine 3.5s infinite;
+}
+
+@keyframes badgeShine{
+  0%{ left:-60%; }
+  60%{ left:140%; }
+  100%{ left:140%; }
+}
+
+.player-card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.04), transparent),
+    var(--card);
+}
