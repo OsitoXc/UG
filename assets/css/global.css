@@ -148,15 +148,6 @@ body{
   box-shadow:0 18px 45px rgba(0,0,0,.75);
 }
 
-.player-card img{
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  border:3px solid var(--accent);
-  object-fit:cover;
-  margin-bottom:12px;
-}
-
 .player-name{
   font-size:18px;
   font-weight:800;
@@ -277,7 +268,7 @@ body{
   color:var(--accent);
 }
 
-/* ===== AVATAR ANIMATION ===== */
+/* ===== AVATAR FREE FIRE STYLE ===== */
 .avatar-wrap{
   position:relative;
   width:110px;
@@ -288,11 +279,12 @@ body{
 .avatar-square{
   width:110px;
   height:110px;
-  border-radius:14px; /* no circular */
+  border-radius:14px;
   object-fit:cover;
-  border:2px solid rgba(255,255,255,.12);
+  border:2px solid rgba(255,255,255,.15);
 }
 
+/* ===== BADGE PRO ===== */
 .badge{
   position:absolute;
   top:-6px;
@@ -304,30 +296,21 @@ body{
   overflow:hidden;
 }
 
+/* GOLD */
 .badge-gold{
-  background:linear-gradient(
-    135deg,
-    #facc15,
-    #fde68a,
-    #f59e0b
-  );
-  box-shadow:
-    0 0 8px rgba(250,204,21,.55),
-    inset 0 0 6px rgba(255,255,255,.4);
+  background:linear-gradient(135deg,#facc15,#fde68a,#f59e0b);
+  box-shadow:0 0 8px rgba(250,204,21,.6),
+             inset 0 0 6px rgba(255,255,255,.4);
 }
 
+/* RED IGL */
 .badge-red{
-  background:linear-gradient(
-    135deg,
-    #ef4444,
-    #fecaca,
-    #b91c1c
-  );
-  box-shadow:
-    0 0 8px rgba(239,68,68,.55),
-    inset 0 0 6px rgba(255,255,255,.4);
+  background:linear-gradient(135deg,#ef4444,#fecaca,#b91c1c);
+  box-shadow:0 0 8px rgba(239,68,68,.6),
+             inset 0 0 6px rgba(255,255,255,.4);
 }
 
+/* SHINE */
 .badge::after{
   content:"";
   position:absolute;
@@ -338,7 +321,7 @@ body{
   background:linear-gradient(
     120deg,
     transparent,
-    rgba(255,255,255,.8),
+    rgba(255,255,255,.9),
     transparent
   );
   transform:rotate(25deg);
@@ -349,10 +332,4 @@ body{
   0%{ left:-60%; }
   60%{ left:140%; }
   100%{ left:140%; }
-}
-
-.player-card{
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.04), transparent),
-    var(--card);
 }
