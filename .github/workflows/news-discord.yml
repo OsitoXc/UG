@@ -15,6 +15,6 @@ jobs:
           curl -X POST \
           -H "Content-Type: application/json" \
           -d '{
-            "content": "@everyone 📢 **United Glory · News**\nNuevo comunicado oficial disponible.\n\n👉 https://ugesport.icu/news/"
+            "content": "📢 **United Glory · News**\nNuevo comunicado oficial disponible.\n\n👉🏻 [United Glory News](https://ugesport.icu/news/)\n\n<:nkKannaPoint:1275457758967238747> @everyone"
           }' \
           https://discord.com/api/webhooks/1450886959953350777/A49F0KxLzV5Hfc9PSlLmWu55JSelEIWlqvEAEc6BElSlyasHp-aGhI_8c_9v_JyOSP46
