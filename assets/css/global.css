@@ -217,51 +217,26 @@ body{
   font-size:15px;
 }
 
-/* ===== OVERLAY MENU (ALLGLORY STYLE) ===== */
+/* ===== DROPDOWN MENU ===== */
 .dropdown-menu{
-  position:fixed;
-  inset:0;
-  background:rgba(10,10,14,.96);
-  backdrop-filter:blur(20px);
-
-  display:flex;
+  display:none;
   flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  gap:28px;
-
-  opacity:0;
-  pointer-events:none;
-  transform:translateY(20px);
-
-  transition:
-    opacity .35s ease,
-    transform .35s ease;
-
-  z-index:9999;
-}
-
-.dropdown-menu.active{
-  opacity:1;
-  pointer-events:auto;
-  transform:translateY(0);
+  background:var(--card);
+  border-top:1px solid var(--border);
 }
 
 .dropdown-menu a{
-  font-size:20px;        /* 👈 más pequeño */
-  font-weight:700;       /* 👈 menos pesado */
-  letter-spacing:1px;    /* 👈 más natural */
+  padding:14px 18px;
+  font-size:14px;
+  font-weight:600;
+  color:var(--muted);
   text-decoration:none;
-  color:#fff;
-  opacity:.85;
-  transition:.25s;
+  transition:.2s;
 }
 
 .dropdown-menu a:hover{
-  opacity:1;
-  color:var(--accent);
-  transform:translateY(-2px);
+  background:rgba(143,211,255,.12);
+  color:#fff;
 }
 
 /* ===== PLAYER TAGS ===== */
@@ -349,4 +324,4 @@ body{
     transform:translateY(0) rotate(0deg) scale(.9);
     opacity:.4;
   }
-  }
+}
