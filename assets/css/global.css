@@ -219,24 +219,44 @@ body{
 
 /* ===== DROPDOWN MENU ===== */
 .dropdown-menu{
-  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100vh;
+
+  background:rgba(12,13,17,.96);
+  backdrop-filter:blur(18px);
+
+  display:flex;
   flex-direction:column;
-  background:var(--card);
-  border-top:1px solid var(--border);
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+
+  transform:translateY(-100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+
+  z-index:9999;
+}
+
+.dropdown-menu.active{
+  transform:translateY(0);
 }
 
 .dropdown-menu a{
-  padding:14px 18px;
-  font-size:14px;
-  font-weight:600;
-  color:var(--muted);
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:1px;
+  color:#fff;
   text-decoration:none;
-  transition:.2s;
+  opacity:.85;
+  transition:.25s;
 }
 
 .dropdown-menu a:hover{
-  background:rgba(143,211,255,.12);
-  color:#fff;
+  opacity:1;
+  color:var(--accent);
 }
 
 /* ===== PLAYER TAGS ===== */
@@ -324,4 +344,4 @@ body{
     transform:translateY(0) rotate(0deg) scale(.9);
     opacity:.4;
   }
-}
+  }
