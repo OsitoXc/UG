@@ -23,6 +23,7 @@
 </head>
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
   <div class="navbar-inner">
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
@@ -30,55 +31,70 @@
   </div>
 
   <div id="menu" class="dropdown-menu">
-    <a href="/">Inicio</a>
-    <a href="/players">Players</a>
-    <a href="/news">News</a>
+    <a href="/">HOME</a>
+    <a href="/players">TEAMS</a>
+    <a href="/news">NEWS</a>
   </div>
 </div>
 
+<!-- MAIN -->
 <main class="container">
 
-  <section class="card hero-card">
+  <!-- HERO -->
+  <section class="hero-card">
     <img src="GLORY - B.png" alt="United Glory" class="logo">
+
     <p class="hero-text">
-      Proyecto competitivo en crecimiento enfocado en disciplina, constancia
-      y desarrollo dentro de Free Fire.
+      United Glory es un proyecto competitivo en crecimiento,
+      con un equipo casi conformado y un progreso constante
+      dentro del entorno competitivo de Free Fire.
     </p>
   </section>
 
-  <!-- REDES -->
-  <section class="card">
-    <h2 class="section-title">🌐 Redes Oficiales</h2>
+  <!-- ABOUT -->
+  <section>
+    <h2 class="section-title">About United Glory</h2>
 
-    <div class="social-links">
-      <a href="https://discord.gg/37Y4uPmndy" target="_blank" class="social-item">
-        <img src="assets/img/discord.png" alt="Discord">
-        <span>Discord</span>
+    <p class="text-muted">
+      United Glory cuenta actualmente con una base sólida de jugadores
+      y se encuentra en un proceso de crecimiento progresivo.
+      El objetivo principal es consolidar el equipo,
+      mejorar el rendimiento competitivo y mantener una identidad clara.
+    </p>
+
+    <p class="text-muted" style="margin-top:10px;">
+      El proyecto avanza paso a paso, priorizando la estabilidad del roster,
+      la disciplina y el compromiso colectivo.
+    </p>
+  </section>
+
+  <!-- SOCIAL -->
+  <section style="margin-top:30px; text-align:center;">
+  <h2 class="section-title">SOCIAL</h2>
+
+  <div style="
+    display:flex;
+    justify-content:center;
+    gap:32px;
+    margin-top:12px;
+    font-weight:700;
+    letter-spacing:1px;
+  ">
+      <a href="https://discord.gg/37Y4uPmndy" target="_blank" style="color:#fff; text-decoration:none;">
+        DISCORD
       </a>
 
-      <a href="https://www.instagram.com/united_glory_esport" target="_blank" class="social-item">
-        <img src="assets/img/instagram.png" alt="Instagram">
-        <span>Instagram</span>
+      <a href="https://www.instagram.com/united_glory_esport" target="_blank" style="color:#fff; text-decoration:none;">
+        INSTAGRAM
       </a>
     </div>
-  </section>
-
-  <!-- INFO DEL EQUIPO -->
-  <section class="card">
-    <h2 class="section-title">ℹ Información del Equipo</h2>
-    <p class="text-muted">
-      UNITED GLORY ESPORT es un equipo en formación ubicado en la región de
-      Estados Unidos (EE.UU).  
-      Estamos iniciando con una base seria, enfocada en el crecimiento ordenado,
-      la identidad competitiva y el compromiso del roster.
-    </p>
   </section>
 
 </main>
 
 <!-- FOOTER -->
 <footer class="footer-card">
-  ©2025 United Glory | Todos los derechos reservados.
+  ©2025 United Glory | All rights reserved.
 </footer>
 
 <script src="assets/js/navbar.js"></script>
