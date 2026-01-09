@@ -1,4 +1,10 @@
 function toggleMenu(){
   const menu = document.getElementById("menu");
-  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+  menu.classList.toggle("active");
 }
+
+document.querySelectorAll('#menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('menu').classList.remove('active');
+  });
+});
