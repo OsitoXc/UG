@@ -249,9 +249,9 @@ body{
 }
 
 .dropdown-menu a{
-  font-size:26px;
-  font-weight:800;
-  letter-spacing:2px;
+  font-size:20px;        /* 👈 más pequeño */
+  font-weight:700;       /* 👈 menos pesado */
+  letter-spacing:1px;    /* 👈 más natural */
   text-decoration:none;
   color:#fff;
   opacity:.85;
