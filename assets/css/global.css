@@ -219,10 +219,29 @@ body{
 
 /* ===== DROPDOWN MENU ===== */
 .dropdown-menu{
-  display:none;
-  flex-direction:column;
+  position:absolute;
+  top:100%;
+  left:0;
+  width:100%;
   background:var(--card);
-  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+
+  display:flex;
+  flex-direction:column;
+
+  transform:translateY(-10px);
+  opacity:0;
+  pointer-events:none;
+
+  transition:all .25s ease;
+  z-index:999;
+}
+
+/* cuando está activo */
+.dropdown-menu.active{
+  transform:translateY(0);
+  opacity:1;
+  pointer-events:auto;
 }
 
 .dropdown-menu a{
