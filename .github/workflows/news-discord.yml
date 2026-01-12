@@ -10,11 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Discord notification
+      - name: Send Discord Embed Notification
         run: |
           curl -X POST \
           -H "Content-Type: application/json" \
           -d '{
-            "content": "📢 **United Glory · News**\nNuevo comunicado oficial disponible.\n\n👉🏻 [United Glory News](https://ugesport.icu/news/)\n\n<:w_outlineheart:1450294659652915331> @everyone"
+            "content": "@everyone",
+            "embeds": [
+              {
+                "title": "📢 United Glory · News",
+                "description": "**Nuevo comunicado oficial disponible.**\n\n👉🏻 [Ver United Glory News](https://ugesport.icu/news/)",
+                "color": 5793266,
+                "footer": {
+                  "text": "United Glory"
+                },
+                "timestamp": "'"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"'"
+              }
+            ]
           }' \
           https://discord.com/api/webhooks/1446209741461131506/wUa-IYbAso9PPrzXBb_C5-e5gmFd8qQNpDNfgwDVGcSzJva_whwFpI5lfb2pD0aDRFgo
