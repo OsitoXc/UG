@@ -190,9 +190,12 @@ body{
 
 /* ===== NAVBAR ===== */
 .navbar{
-  background:rgba(12,13,17,.92);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
+  position: sticky;   /* 🔥 */
+  top: 0;
+  z-index: 10000;     /* 🔥 siempre arriba */
+  background: rgba(12,13,17,.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
 }
 
 .navbar-inner{
