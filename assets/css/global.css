@@ -348,7 +348,7 @@ body{
 .team-banner {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;   /* mantiene proporción */
+  aspect-ratio: 16 / 9;
   border-radius: 18px;
   overflow: hidden;
   margin-top: 20px;
@@ -371,9 +371,11 @@ body{
   position: absolute;
   inset: 0;
   z-index: 2;
+
   display: flex;
-  align-items: center;
-  padding-left: 24px;
+  flex-direction: column;
+  justify-content: flex-end;   /* 🔹 baja el contenido */
+  padding: 0 24px 22px;        /* 🔹 separación inferior */
 }
 
 .banner-content h1 {
@@ -381,4 +383,12 @@ body{
   font-weight: 800;
   letter-spacing: 1px;
   color: #fff;
+  margin: 0;
+}
+
+.banner-content p {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #c7d2ff;
+  opacity: 0.9;
 }
