@@ -355,7 +355,6 @@ body{
   background: url("../assets/img/banner-team.jpg") center / cover no-repeat;
 }
 
-/* Oscurecer fondo */
 .banner-overlay {
   position: absolute;
   inset: 0;
