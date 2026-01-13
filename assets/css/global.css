@@ -352,7 +352,7 @@ body{
   border-radius: 18px;
   overflow: hidden;
   margin-top: 24px;
-  background: url("../assets/img/banner-team.jpg") center / cover no-repeat;
+  background: url("../img/banner-team.jpg") center / cover no-repeat;
 }
 
 .banner-overlay {
