@@ -28,4 +28,4 @@ jobs:
               }
             ]
           }' \
-          https://discord.com/api/webhooks/1446209741461131506/wUa-IYbAso9PPrzXBb_C5-e5gmFd8qQNpDNfgwDVGcSzJva_whwFpI5lfb2pD0aDRFgo
+          https://discord.&com/api/webhooks/1446209741461131506/wUa-IYbAso9PPrzXBb_C5-e5gmFd8qQNpDNfgwDVGcSzJva_whwFpI5lfb2pD0aDRFgo
