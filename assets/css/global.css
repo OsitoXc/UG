@@ -226,3 +226,79 @@ body{
     font-size:19px;
   }
 }
+
+/* ===== COLLABORATORS ===== */
+.collab-section{
+  margin-top:34px;
+}
+
+.collab-card{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  animation:fadeUp .6s ease both;
+}
+
+.collab-logo{
+  width:96px;
+  height:96px;
+  object-fit:contain;
+  border-radius:14px;
+  background:#0c0d11;
+  padding:10px;
+}
+
+.collab-info h3{
+  margin:0;
+  font-size:16px;
+  font-weight:700;
+}
+
+.collab-info p{
+  margin:8px 0 12px;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.collab-link{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  color:var(--accent);
+  transition:.25s;
+}
+
+.collab-link:hover{
+  background:rgba(143,211,255,.15);
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(14px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .collab-card{
+    flex-direction:column;
+    text-align:center;
+  }
+}
