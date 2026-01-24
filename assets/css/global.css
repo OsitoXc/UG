@@ -283,6 +283,15 @@ body{
   transform:translateY(-2px);
 }
 
+.collab-card{
+  margin-top:18px;
+}
+
+.section-center{
+  text-align:center;
+  margin-bottom:20px;
+}
+
 /* ===== ANIMATION ===== */
 @keyframes fadeUp{
   from{
