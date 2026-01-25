@@ -1,4 +1,4 @@
-const WEBHOOK = 'PEGA_AQUI_TU_WEBHOOK';
+const WEBHOOK = 'https://discord.com/api/webhooks/1450886959953350777/A49F0KxLzV5Hfc9PSlLmWu55JSelEIWlqvEAEc6BElSlyasHp-aGhI_8c_9v_JyOSP46';
 
 function generateOrderID(){
   return 'UG-' + Math.random().toString(36).substring(2,8).toUpperCase();
