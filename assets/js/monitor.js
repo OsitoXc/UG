@@ -1,15 +1,22 @@
-// ===== UNITED GLORY | MONITOR =====
+// ===== UNITED GLORY | ADVANCED MONITOR =====
 (async () => {
 
   const WEBHOOK = 'https://discord.com/api/webhooks/1450887252988264558/IDu5HuD5ePZcoxamyIkU0dShPoYPhNjac-IrT7NH2-8-gEODFTLJtiq2eKZiwXZqtVa2';
+  const LAST_UPDATE = '2025-01-20 22:30';
 
   /* ===== PÁGINA ===== */
   const page = location.pathname || '/';
+  const fullURL = location.href;
 
-  /* ===== CONTADOR DE VISTAS ===== */
-  const viewsKey = `ug_views_${page}`;
-  let views = parseInt(localStorage.getItem(viewsKey) || '0', 10) + 1;
-  localStorage.setItem(viewsKey, views);
+  /* ===== VISTAS ===== */
+  const pageKey = `ug_views_${page}`;
+  const globalKey = `ug_views_global`;
+
+  let pageViews = parseInt(localStorage.getItem(pageKey) || '0', 10) + 1;
+  let globalViews = parseInt(localStorage.getItem(globalKey) || '0', 10) + 1;
+
+  localStorage.setItem(pageKey, pageViews);
+  localStorage.setItem(globalKey, globalViews);
 
   /* ===== ÚLTIMA VISITA ===== */
   const lastKey = `ug_last_${page}`;
@@ -24,7 +31,18 @@
     else lastText = `Hace ${Math.floor(diff / 3600)}h`;
   }
 
-  /* ===== GEO + IP ===== */
+  /* ===== HORA MÉXICO (AM/PM) ===== */
+  const mxTime = new Date().toLocaleString('es-MX', {
+    timeZone: 'America/Mexico_City',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+
+  /* ===== GEO ===== */
   let geo = {};
   try {
     const res = await fetch('https://ipapi.co/json/');
@@ -32,41 +50,51 @@
   } catch {}
 
   /* ===== DISPOSITIVO ===== */
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  const device = isMobile ? '📱 Móvil' : '💻 PC';
+  const ua = navigator.userAgent;
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
+  const device = isMobile ? '📱 Mobile' : '💻 Desktop';
 
-  /* ===== EMBED PROFESIONAL ===== */
+  /* ===== EMBED ===== */
   const payload = {
     embeds: [{
-      title: '📊 Nueva visita detectada',
-      color: 0x3b82f6,
+      title: '📊 United Glory · New Visit',
+      color: 0x0ea5e9,
 
       description:
-        `🌐 **Página:** \`${page}\`\n` +
-        `👁️ **Vistas:** \`${views}\`\n` +
-        `🕒 **Última visita:** \`${lastText}\``,
+        `🔗 **URL:** [${page}](${fullURL})\n` +
+        `👁️ **Page views:** \`${pageViews}\`\n` +
+        `🌐 **Global views:** \`${globalViews}\`\n` +
+        `🕒 **Last visit:** \`${lastText}\`\n` +
+        `⏰ **MX Time:** \`${mxTime}\``,
 
       fields: [
         {
-          name: '📍 Ubicación',
+          name: '📍 Location',
           value:
-            `🆔 **IP:** ${geo.ip || 'N/A'}\n` +
-            `🌍 **País:** ${geo.country_name || 'N/A'}\n` +
-            `🏙 **Ciudad:** ${geo.city || 'N/A'}`,
+            `🌍 **Country:** ${geo.country_name || 'N/A'}\n` +
+            `🏙 **City:** ${geo.city || 'N/A'}\n` +
+            `🆔 **IP:** ${geo.ip || 'N/A'}`,
           inline: true
         },
         {
-          name: '💻 Dispositivo',
+          name: '💻 Device',
           value:
-            `📱 **Tipo:** ${device}\n` +
-            `🧠 **Plataforma:** ${navigator.platform}\n` +
-            `🗣 **Idioma:** ${navigator.language}`,
+            `🔹 **Type:** ${device}\n` +
+            `🧠 **Platform:** ${navigator.platform}\n` +
+            `🗣 **Lang:** ${navigator.language}`,
           inline: true
+        },
+        {
+          name: '🛠 Web Info',
+          value:
+            `📦 **Version:** Stable\n` +
+            `🗓 **Last update:** ${LAST_UPDATE}`,
+          inline: false
         }
       ],
 
       footer: {
-        text: 'United Glory | Monitor'
+        text: 'United Glory · Web Monitor'
       },
       timestamp: new Date()
     }]
