@@ -311,3 +311,51 @@ body{
     text-align:center;
   }
 }
+
+.product-card{
+  text-align:center;
+}
+
+.product-img{
+  width:180px;
+  margin:auto;
+  border-radius:16px;
+}
+
+.price-box{
+  margin:16px 0;
+}
+
+.old-price{
+  text-decoration:line-through;
+  color:#777;
+  margin-right:10px;
+}
+
+.new-price{
+  font-size:22px;
+  font-weight:800;
+  color:#4ade80;
+}
+
+.buy-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:12px 22px;
+  border-radius:14px;
+  background:#8fd3ff;
+  color:#000;
+  font-weight:800;
+  text-decoration:none;
+}
+
+.note{
+  font-size:12px;
+  color:#9aa0b4;
+}
+
+.policy{
+  margin-top:32px;
+  font-size:13px;
+  color:#9aa0b4;
+}
