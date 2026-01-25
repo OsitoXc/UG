@@ -2,23 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Services | United Glory</title>
+  <title>Shop | United Glory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="GLORY - B.png">
-  <link rel="stylesheet" href="assets/css/global.css">
+
+  <link rel="icon" href="../GLORY - B.png">
+  <link rel="stylesheet" href="../assets/css/global.css">
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
   <div class="navbar-inner">
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
     <div class="site-name">UNITED GLORY</div>
   </div>
+
   <div id="menu" class="dropdown-menu">
-    <a href="/">HOME</a>
-    <a href="/news">NEWS</a>
-    <a href="/shop">SHOP</a>
+    <a href="../">HOME</a>
+    <a href="../news">NEWS</a>
+    <a href="../shop">SHOP</a>
   </div>
 </div>
 
@@ -26,14 +29,14 @@
 
 <section class="card product-card">
 
-  <img src="minecraft.jpg" class="product-img" alt="Minecraft">
+  <img src="../assets/img/minecraft.png" class="product-img">
 
   <h2 class="section-title">
     Minecraft: Java & Bedrock Edition (PC)
   </h2>
 
   <p class="text-muted">
-    Código oficial de activación para PC.
+    Código oficial de activación digital.
   </p>
 
   <small class="note">
@@ -45,7 +48,8 @@
     <span class="new-price">$400 MXN</span>
   </div>
 
-  <a href="checkout.html?product=minecraft_jb&price=400"
+  <!-- REDIRECCIÓN A CHECKOUT -->
+  <a href="../checkout/?product=minecraft_jb&price=400"
      class="buy-btn">
     Comprar ahora
   </a>
@@ -53,19 +57,17 @@
 </section>
 
 <section class="policy">
-  <h3>Políticas</h3>
   <p>
-    No estamos afiliados a Mojang ni Microsoft.<br>
-    Producto digital, no se aceptan reembolsos una vez entregado el código.
+    Producto digital · No reembolsable · No afiliados a Mojang/Microsoft
   </p>
 </section>
 
 </main>
 
 <footer class="footer-card">
-  ©2025 United Glory | All rights reserved.
+  ©2025 United Glory
 </footer>
 
-<script src="assets/js/navbar.js"></script>
+<script src="../assets/js/navbar.js"></script>
 </body>
 </html>
