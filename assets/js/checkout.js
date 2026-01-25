@@ -1,7 +1,7 @@
-const WEBHOOK = 'PEGA_AQUÍ_TU_WEBHOOK';
+const WEBHOOK = 'PEGA_AQUI_TU_WEBHOOK';
 
-function generateID(){
-  return 'UG-' + Date.now().toString(36).toUpperCase();
+function generateOrderID(){
+  return 'UG-' + Math.random().toString(36).substring(2,8).toUpperCase();
 }
 
 document.getElementById('checkoutForm').addEventListener('submit', e => {
@@ -10,7 +10,7 @@ document.getElementById('checkoutForm').addEventListener('submit', e => {
   const params = new URLSearchParams(window.location.search);
 
   const order = {
-    id: generateID(),
+    id: generateOrderID(),
     product: 'Minecraft Java & Bedrock (PC)',
     price: '$400 MXN',
     name: name.value,
@@ -28,7 +28,7 @@ document.getElementById('checkoutForm').addEventListener('submit', e => {
     body:JSON.stringify({
       embeds:[{
         title:'🛒 Nuevo pedido',
-        color:0x3b82f6,
+        color:0x22c55e,
         fields:[
           {name:'🆔 Pedido',value:order.id},
           {name:'🎮 Producto',value:order.product},
@@ -38,8 +38,7 @@ document.getElementById('checkoutForm').addEventListener('submit', e => {
           {name:'📍 CP',value:order.zip},
           {name:'🕒 Hora MX',value:order.time}
         ],
-        footer:{text:'United Glory | Store'},
-        timestamp:new Date()
+        footer:{text:'United Glory | Shop'}
       }]
     })
   });
@@ -47,5 +46,5 @@ document.getElementById('checkoutForm').addEventListener('submit', e => {
   setTimeout(()=>{
     window.location.href =
     'https://www.paypal.com/ncp/payment/TTNQX9SGN2EG6';
-  },600);
+  }, 600);
 });
