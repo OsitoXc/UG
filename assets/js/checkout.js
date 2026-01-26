@@ -45,6 +45,6 @@ document.getElementById('checkoutForm').addEventListener('submit', e => {
 
   setTimeout(()=>{
     window.location.href =
-    'https://www.paypal.com/ncp/payment/3RPG243PCLKVE';
+    'https://www.paypal.com/ncp/payment/TTNQX9SGN2EG6';
   }, 600);
 });
