@@ -359,3 +359,40 @@ body{
   font-size:13px;
   color:#9aa0b4;
 }
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkout-form .field {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-form label {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin-bottom: 0.3rem;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1f2937;
+  background: #0c0d11;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.checkout-form input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+.buy-btn {
+  margin-top: 0.5rem;
+  width: 100%;
+}
