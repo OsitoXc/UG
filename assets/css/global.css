@@ -396,3 +396,72 @@ body{
   margin-top: 0.5rem;
   width: 100%;
 }
+
+/* ===== SOCIAL CENTER ===== */
+.social-center{
+  margin-top:40px;
+  text-align:center;
+}
+
+.social-icons{
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  margin-top:14px;
+}
+
+.social-icons img{
+  width:20px;
+  height:20px;
+  opacity:.85;
+  transition:.25s;
+}
+
+.social-icons img:hover{
+  opacity:1;
+  transform:translateY(-2px);
+}
+
+/* ===== SHOP BANNER ===== */
+.shop-banner{
+  position:relative;
+  width:100%;
+  aspect-ratio:3/1; /* 1500x500 */
+  border-radius:18px;
+  overflow:hidden;
+  background:url("../img/bannershoproblox.png") center / cover no-repeat;
+  background-color:#0c0d11;
+  margin-top:24px;
+}
+
+.shop-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to right,
+    rgba(0,0,0,.65),
+    rgba(0,0,0,.25)
+  );
+}
+
+.shop-content{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:0 24px 22px;
+}
+
+.shop-content h2{
+  margin:0;
+  font-size:26px;
+  font-weight:800;
+}
+
+.shop-content p{
+  margin-top:6px;
+  font-size:14px;
+  color:#c7d2ff;
+}
