@@ -6,6 +6,19 @@ function toggleMenu(){
 }
 
   window.addEventListener("load", function(){
+
     const loader = document.getElementById("loader");
-    loader.classList.add("hidden");
+    const minTime = 1500; // 1.5 segundos
+    const startTime = Date.now();
+
+    function hideLoader(){
+      const elapsed = Date.now() - startTime;
+      const remaining = minTime - elapsed;
+
+      setTimeout(() => {
+        loader.classList.add("hidden");
+      }, remaining > 0 ? remaining : 0);
+    }
+
+    hideLoader();
   });
