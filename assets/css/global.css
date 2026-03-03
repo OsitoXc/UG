@@ -465,3 +465,8 @@ body{
   color:var(--muted);
   line-height:1.6;
 }
+
+<!-- LOADER GLOBAL -->
+<div id="loader">
+  <img src="/assets/img/animation.gif.gif" alt="Loading">
+</div>
