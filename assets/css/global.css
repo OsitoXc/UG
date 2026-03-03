@@ -466,7 +466,23 @@ body{
   line-height:1.6;
 }
 
-<!-- LOADER GLOBAL -->
-<div id="loader">
-  <img src="/assets/img/animation.gif" alt="Loading">
-</div>
+/* ===== LOADER ===== */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#0c0d11;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+  transition:opacity .4s ease, visibility .4s ease;
+}
+
+#loader img{
+  width:120px; /* ajusta según tu gif */
+}
+
+#loader.hidden{
+  opacity:0;
+  visibility:hidden;
+}
