@@ -1,14 +1,14 @@
 function toggleMenu(){
   const menu = document.getElementById("menu");
-  menu.classList.toggle("active");
+  if(menu){
+    menu.classList.toggle("active");
+  }
 }
 
-window.addEventListener("load", function(){
+document.addEventListener("DOMContentLoaded", function(){
   const loader = document.getElementById("loader");
-
   if(loader){
-    setTimeout(() => {
-      loader.classList.add("hidden");
-    }, 700);
+    loader.style.opacity = "0";
+    loader.style.visibility = "hidden";
   }
 });
