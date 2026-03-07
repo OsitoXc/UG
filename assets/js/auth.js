@@ -19,8 +19,6 @@ const name = user.user_metadata.full_name;
 box.innerHTML = `
 <img src="${avatar}" style="width:32px;height:32px;border-radius:50%;">
 <span>${name}</span>
-<button onclick="logout()">Logout</button>
-`;
 
 }else{
 
