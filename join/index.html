@@ -124,15 +124,13 @@ crossorigin="anonymous"></script>
 
 <script>
 
+document.addEventListener("DOMContentLoaded", function(){
+
 const select = document.getElementById("typeSelect");
 
 const clanForm = document.getElementById("clanForm");
 const esportForm = document.getElementById("esportForm");
 const staffForm = document.getElementById("staffForm");
-
-clanForm.style.display = "none";
-esportForm.style.display = "none";
-staffForm.style.display = "none";
 
 select.addEventListener("change", function(){
 
@@ -151,6 +149,8 @@ esportForm.style.display="block";
 if(this.value === "staff"){
 staffForm.style.display="block";
 }
+
+});
 
 });
 
