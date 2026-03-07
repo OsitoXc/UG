@@ -25,7 +25,7 @@ box.innerHTML = `
 }else{
 
 box.innerHTML = `
-<button onclick="login()">Discord</button>
+<button onclick="login()" class="login-btn">Discord</button>
 `;
 
 }
