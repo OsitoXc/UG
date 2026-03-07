@@ -3,11 +3,13 @@ const supabaseClient = supabase.createClient(
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imltb3VidHZ0YWRnemF4a2J1aWxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5MDE2MTEsImV4cCI6MjA4ODQ3NzYxMX0.1vcQI1LwcuT9ssxdfnnAuHJJiMNig2hMZCs-efJWP0E"
 );
 
+/* limpiar token de URL */
 
 if (window.location.hash.includes("access_token")) {
 history.replaceState({}, document.title, window.location.pathname);
 }
 
+/* cargar usuario */
 
 async function loadUser(){
 
@@ -20,7 +22,7 @@ if(!box) return;
 if(data.user){
 
 let avatar = data.user.user_metadata.avatar_url;
-let name = data.user.user_metadata.full_name;
+let name = data.user.user_metadata.full_name || data.user.user_metadata.name;
 
 box.innerHTML = `
 <img src="${avatar}">
@@ -31,16 +33,14 @@ box.innerHTML = `
 }else{
 
 box.innerHTML = `
-<button class="login-btn" onclick="loginDiscord()">
-Login Discord
-</button>
+<button class="login-btn" onclick="loginDiscord()">Discord</button>
 `;
 
 }
 
 }
 
-/* login */
+/* login discord */
 
 async function loginDiscord(){
 
@@ -50,14 +50,23 @@ provider:"discord"
 
 }
 
+/* logout */
 
 async function logout(){
 
 await supabaseClient.auth.signOut();
-
 location.reload();
 
 }
 
+/* detectar cambios de sesión */
+
+supabaseClient.auth.onAuthStateChange((event, session) => {
+
+loadUser();
+
+});
+
+/* iniciar */
 
 loadUser();
