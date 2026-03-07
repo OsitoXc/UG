@@ -490,3 +490,53 @@ body{
   visibility:hidden;
   pointer-events:none;
 }
+
+.join-box{
+background: rgba(255,255,255,0.05);
+border:1px solid rgba(0,200,255,0.2);
+padding:25px;
+border-radius:16px;
+margin-top:30px;
+}
+
+.join-box select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+border:none;
+background:#020617;
+color:white;
+}
+
+.form-box{
+display:none;
+background: rgba(255,255,255,0.05);
+border:1px solid rgba(0,200,255,0.2);
+padding:25px;
+border-radius:16px;
+margin-top:20px;
+}
+
+.form-box input,
+.form-box textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#020617;
+color:white;
+}
+
+.form-box button{
+margin-top:15px;
+padding:12px;
+width:100%;
+background:#0072ff;
+border:none;
+border-radius:10px;
+color:white;
+font-weight:600;
+cursor:pointer;
+}
