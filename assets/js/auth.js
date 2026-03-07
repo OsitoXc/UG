@@ -3,13 +3,11 @@ const supabaseClient = supabase.createClient(
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imltb3VidHZ0YWRnemF4a2J1aWxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5MDE2MTEsImV4cCI6MjA4ODQ3NzYxMX0.1vcQI1LwcuT9ssxdfnnAuHJJiMNig2hMZCs-efJWP0E"
 );
 
-/* limpiar token de la URL */
 
 if (window.location.hash.includes("access_token")) {
 history.replaceState({}, document.title, window.location.pathname);
 }
 
-/* cargar usuario */
 
 async function loadUser(){
 
@@ -52,7 +50,6 @@ provider:"discord"
 
 }
 
-/* logout */
 
 async function logout(){
 
@@ -62,6 +59,5 @@ location.reload();
 
 }
 
-/* iniciar */
 
 loadUser();
