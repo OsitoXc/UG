@@ -617,9 +617,19 @@ font-size:13px;
 font-weight:600;
 }
 
+#userBox{
+position:absolute;
+right:18px;
+display:flex;
+align-items:center;
+gap:8px;
+font-size:13px;
+font-weight:600;
+}
+
 #userBox img{
-width:30px;
-height:30px;
+width:28px;
+height:28px;
 border-radius:50%;
 }
 
@@ -627,8 +637,9 @@ border-radius:50%;
 background:#5865F2;
 color:white;
 border:none;
-padding:6px 12px;
-border-radius:6px;
+padding:4px 10px;
+font-size:12px;
+border-radius:5px;
 cursor:pointer;
 }
 
@@ -636,7 +647,8 @@ cursor:pointer;
 background:#ff4d4d;
 color:white;
 border:none;
-padding:6px 12px;
-border-radius:6px;
+padding:4px 10px;
+font-size:12px;
+border-radius:5px;
 cursor:pointer;
 }
