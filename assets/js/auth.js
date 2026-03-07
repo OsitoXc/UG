@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-const { createClient } = supabase;
-
-const supabaseClient = createClient(
+const supabaseClient = supabase.createClient(
 "https://imoubtvtadgzaxkbuils.supabase.co",
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imltb3VidHZ0YWRnemF4a2J1aWxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5MDE2MTEsImV4cCI6MjA4ODQ3NzYxMX0.1vcQI1LwcuT9ssxdfnnAuHJJiMNig2hMZCs-efJWP0E"
 );
@@ -38,26 +36,31 @@ box.innerHTML = `
 `;
 
 document.getElementById("loginBtn").onclick = async () => {
+
 await supabaseClient.auth.signInWithOAuth({
 provider: "discord",
-options:{
+options: {
 redirectTo: window.location.origin
 }
 });
+
 };
 
 }
 
 }
 
+/* detectar cambios de sesión */
 
 supabaseClient.auth.onAuthStateChange(() => {
 updateUser();
 });
 
+/* cargar usuario */
 
-await updateUser();
+updateUser();
 
+/* limpiar token */
 
 if(window.location.hash.includes("access_token")){
 history.replaceState({}, document.title, window.location.pathname);
