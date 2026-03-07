@@ -606,3 +606,37 @@ background:#5750e6;
   background:url("../img/banner-team.jpg") center / contain no-repeat;
   background-color:#0c0d11;
 }
+
+#userBox{
+position:absolute;
+right:18px;
+display:flex;
+align-items:center;
+gap:8px;
+font-size:13px;
+font-weight:600;
+}
+
+#userBox img{
+width:30px;
+height:30px;
+border-radius:50%;
+}
+
+.login-btn{
+background:#5865F2;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.logout-btn{
+background:#ff4d4d;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+}
