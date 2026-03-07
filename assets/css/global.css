@@ -594,3 +594,15 @@ cursor:pointer;
 .form-box button:hover{
 background:#5750e6;
 }
+
+/* ===== JOIN BANNER ===== */
+
+.join-banner{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:18px;
+  overflow:hidden;
+  background:url("../img/banner-teams.jpg") center / contain no-repeat;
+  background-color:#0c0d11;
+}
