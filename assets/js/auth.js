@@ -42,7 +42,7 @@ Login Discord
 
 }
 
-/* login discord */
+/* login */
 
 async function loginDiscord(){
 
