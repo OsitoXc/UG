@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="../assets/css/global.css">
 </head>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="/assets/js/auth.js"></script>
+
 <body>
 
 <!-- LOADER -->
@@ -21,17 +24,23 @@
   <img src="../assets/img/animation.gif" alt="Loading animation">
 </div>
 
-<!-- NAVBAmaR -->
 <div class="navbar">
+
   <div class="navbar-inner">
+    
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
     <div class="site-name">UNITED GLORY</div>
+
+    <div id="userBox"></div>
+
   </div>
 
   <div id="menu" class="dropdown-menu">
     <a href="/">HOME</a>
     <a href="/news">NEWS</a>
   </div>
+
 </div>
 
 <main class="container">
