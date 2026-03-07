@@ -37,6 +37,10 @@
     ]
   }
   </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="/assets/js/auth.js"></script>
+
 </head>
 
 <body>
@@ -46,17 +50,23 @@
   <img src="assets/img/animation.gif" alt="Loading animation">
 </div>
 
-<!-- NAVBAR -->
 <div class="navbar">
+
   <div class="navbar-inner">
+    
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
     <div class="site-name">UNITED GLORY</div>
+
+    <div id="userBox"></div>
+
   </div>
 
   <div id="menu" class="dropdown-menu">
     <a href="/">HOME</a>
     <a href="/news">NEWS</a>
   </div>
+
 </div>
 
 <!-- MAIN -->
