@@ -6,7 +6,7 @@
 <title>United Glory | Join</title>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2756062357855550"
-     crossorigin="anonymous"></script>
+crossorigin="anonymous"></script>
 
 <link rel="icon" type="image/png" href="../GLORY - B.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -18,37 +18,41 @@
 
 <!-- LOADER -->
 <div id="loader">
-  <img src="../assets/img/animation.gif" alt="Loading animation">
+<img src="../assets/img/animation.gif" alt="Loading animation">
 </div>
 
-<!-- NAVBAmaR -->
+<!-- NAVBAR -->
 <div class="navbar">
-  <div class="navbar-inner">
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    <div class="site-name">UNITED GLORY</div>
-  </div>
-
-  <div id="menu" class="dropdown-menu">
-    <a href="/">HOME</a>
-    <a href="/news">NEWS</a>
-  </div>
+<div class="navbar-inner">
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="site-name">UNITED GLORY</div>
 </div>
 
-<section class="join-banner">
+<div id="menu" class="dropdown-menu">
+<a href="/">HOME</a>
+<a href="/news">NEWS</a>
+<a href="/join">JOIN</a>
+</div>
+</div>
 
-  <img src="/assets/img/banners/join.png" alt="Join United Glory">
+<main class="container">
 
-  <div class="banner-text">
-    <h1>ÚNETE A UNITED GLORY</h1>
-    <p>Selecciona una opción para enviar tu solicitud</p>
-  </div>
+<!-- BANNER -->
+<section class="team-banner join-banner">
+
+<div class="banner-overlay"></div>
+
+<div class="banner-content">
+<h1>ÚNETE A UNITED GLORY</h1>
+<p>Selecciona una opción para enviar tu solicitud</p>
+</div>
 
 </section>
 
 
-<section class="join-container">
+<!-- SELECTOR -->
 
-<div class="select-box">
+<section class="join-box">
 
 <h2>Selecciona una opción</h2>
 
@@ -61,59 +65,96 @@
 
 </select>
 
-</div>
+</section>
 
 
-<!-- CLAN -->
+<!-- FORMULARIO CLAN -->
 
-<div id="clanForm" class="form-box">
+<section id="clanForm" class="form-box">
 
 <h3>Solicitud Clan</h3>
 
 <input type="text" placeholder="Nombre">
-
 <input type="text" placeholder="ID del juego">
-
 <input type="text" placeholder="Número">
 
 <button>Enviar solicitud</button>
 
-</div>
+</section>
 
 
-<!-- ESPORT -->
+<!-- FORMULARIO ESPORT -->
 
-<div id="esportForm" class="form-box">
+<section id="esportForm" class="form-box">
 
 <h3>Solicitud eSports</h3>
 
 <input type="text" placeholder="Nombre">
-
 <input type="text" placeholder="Juego">
-
 <input type="text" placeholder="ID del juego">
-
 <input type="number" placeholder="Edad">
 
 <button>Enviar solicitud</button>
 
-</div>
+</section>
 
 
-<!-- STAFF -->
+<!-- FORMULARIO STAFF -->
 
-<div id="staffForm" class="form-box">
+<section id="staffForm" class="form-box">
 
 <h3>Solicitud Staff</h3>
 
 <input type="text" placeholder="Nombre">
-
 <input type="number" placeholder="Edad">
-
 <textarea placeholder="Experiencia"></textarea>
 
 <button>Enviar solicitud</button>
 
-</div>
-
 </section>
+
+</main>
+
+<footer class="footer-card">
+©2025 United Glory | All rights reserved.
+</footer>
+
+<script src="../assets/js/navbar.js"></script>
+<script src="../assets/js/monitor.js"></script>
+
+<script>
+
+const select = document.getElementById("typeSelect");
+
+const clanForm = document.getElementById("clanForm");
+const esportForm = document.getElementById("esportForm");
+const staffForm = document.getElementById("staffForm");
+
+clanForm.style.display = "none";
+esportForm.style.display = "none";
+staffForm.style.display = "none";
+
+select.addEventListener("change", function(){
+
+clanForm.style.display="none";
+esportForm.style.display="none";
+staffForm.style.display="none";
+
+if(this.value === "clan"){
+clanForm.style.display="block";
+}
+
+if(this.value === "esport"){
+esportForm.style.display="block";
+}
+
+if(this.value === "staff"){
+staffForm.style.display="block";
+}
+
+});
+
+</script>
+
+</body>
+</html>
