@@ -33,7 +33,7 @@ box.innerHTML = `
 }else{
 
 box.innerHTML = `
-<button class="login-btn" onclick="loginDiscord()">Discord</button>
+<button class="login-btn" onclick="loginDiscord()">Login</button>
 `;
 
 }
