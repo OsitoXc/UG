@@ -11,9 +11,11 @@ const box = document.getElementById("userBox");
 
 async function updateUser(){
 
-const { data: { user } } = await supabaseClient.auth.getUser();
+const { data: { session } } = await supabaseClient.auth.getSession();
 
-if(user){
+if(session){
+
+const user = session.user;
 
 const avatar = user.user_metadata.avatar_url;
 const name = user.user_metadata.full_name || user.user_metadata.name;
@@ -37,7 +39,10 @@ box.innerHTML = `
 
 document.getElementById("loginBtn").onclick = async () => {
 await supabaseClient.auth.signInWithOAuth({
-provider: "discord"
+provider: "discord",
+options:{
+redirectTo: window.location.origin
+}
 });
 };
 
@@ -45,17 +50,14 @@ provider: "discord"
 
 }
 
-/* detectar cambios de sesión */
 
 supabaseClient.auth.onAuthStateChange(() => {
 updateUser();
 });
 
-/* cargar usuario */
 
-updateUser();
+await updateUser();
 
-/* limpiar token de URL */
 
 if(window.location.hash.includes("access_token")){
 history.replaceState({}, document.title, window.location.pathname);
