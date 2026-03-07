@@ -14,29 +14,8 @@ crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../assets/css/global.css">
 </head>
 
-<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
-<script>
-
-const supabaseClient = supabase.createClient(
-"https://imoubtvtadgzaxkbuils.supabase.co",
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imltb3VidHZ0YWRnemF4a2J1aWxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5MDE2MTEsImV4cCI6MjA4ODQ3NzYxMX0.1vcQI1LwcuT9ssxdfnnAuHJJiMNig2hMZCs-efJWP0E"
-);
-
-async function loginDiscord(){
-await supabaseClient.auth.signInWithOAuth({
-provider: "discord"
-});
-}
-
-async function loginGoogle(){
-await supabaseClient.auth.signInWithOAuth({
-provider: "google"
-});
-}
-
-</script>
+<script src="/assets/js/auth.js"></script>
 
 <body>
 
@@ -46,17 +25,14 @@ provider: "google"
 </div>
 
 <!-- NAVBAR -->
-<div class="navbar">
 <div class="navbar-inner">
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<div class="site-name">UNITED GLORY</div>
-</div>
 
-<div id="menu" class="dropdown-menu">
-<a href="/">HOME</a>
-<a href="/news">NEWS</a>
-<a href="/join">JOIN</a>
-</div>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<div class="site-name">UNITED GLORY</div>
+
+<div id="userBox"></div>
+
 </div>
 
 <main class="container">
