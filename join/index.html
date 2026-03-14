@@ -96,29 +96,28 @@ crossorigin="anonymous"></script>
 
 <h3>Solicitud eSports</h3>
 
-<input type="text" placeholder="Nombre">
-<input type="text" placeholder="Juego">
-<input type="text" placeholder="ID del juego">
-<input type="number" placeholder="Edad">
+<input class="auto-name" placeholder="Nombre" required>
+<input id="edad" placeholder="Edad" required>
+<input id="pais" placeholder="País" required>
+<input id="gameID" placeholder="ID" required>
+<input id="numero" placeholder="Número" required>
 
-<button>Enviar solicitud</button>
+<select id="rol">
+<option value="">Rol</option>
+<option>Rusher L1</option>
+<option>Rusher L2</option>
+<option>Granadero/IGL</option>
+<option>Soporte</option>
+</select>
 
-</section>
+<input id="disponibilidad" placeholder="Disponibilidad" required>
 
+<textarea id="exp" placeholder="Experiencia"></textarea>
 
-<!-- FORMULARIO STAFF -->
-
-<section id="staffForm" class="form-box">
-
-<h3>Solicitud Staff</h3>
-
-<input type="text" placeholder="Nombre">
-<input type="number" placeholder="Edad">
-<textarea placeholder="Experiencia"></textarea>
-
-<button>Enviar solicitud</button>
+<button onclick="sendEsport()">Enviar solicitud</button>
 
 </section>
+
 
 </main>
 
