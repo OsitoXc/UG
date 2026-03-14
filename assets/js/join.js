@@ -151,3 +151,32 @@ Discord: ${document.querySelector(".auto-discord").value}`;
 sendRequest("Clan",data);
 
 }
+
+function sendEsport(){
+
+const edad = edad.value;
+const pais = pais.value;
+const id = gameID.value;
+const numero = numero.value;
+const rol = rol.value;
+const disp = disponibilidad.value;
+const exp = exp.value;
+
+if(!edad||!pais||!id||!numero||!rol||!disp||!exp){
+alert("Completa todos los campos");
+return;
+}
+
+const data =
+`Nombre: ${document.querySelector(".auto-name").value}
+Edad: ${edad}
+País: ${pais}
+ID: ${id}
+Número: ${numero}
+Rol: ${rol}
+Disponibilidad: ${disp}
+Experiencia: ${exp}`;
+
+sendRequest("Esport",data);
+
+}
