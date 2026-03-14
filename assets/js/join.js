@@ -27,3 +27,107 @@ return {name,discord,avatar,id};
 }
 
 window.addEventListener("load",getUser);
+
+
+async function checkSpam(user_id){
+
+const yesterday = new Date();
+yesterday.setDate(yesterday.getDate()-1);
+
+const { data } = await supabaseClient
+.from("ug_requests")
+.select("*")
+.eq("user_id",user_id)
+.gte("created_at",yesterday.toISOString());
+
+if(data.length > 0){
+
+alert("Solo puedes enviar una solicitud cada 24h");
+
+return false;
+
+}
+
+return true;
+
+}
+
+async function sendRequest(type,data){
+
+const user = await getUser();
+
+if(!await checkSpam(user.id)) return;
+
+const now = new Date().toLocaleString();
+
+const { data:insert } = await supabaseClient
+.from("ug_requests")
+.insert({
+user_id:user.id,
+type:type,
+data:data
+})
+.select();
+
+const number = insert[0].id;
+
+const embed = {
+
+username:"United Glory",
+
+embeds:[{
+
+title:`Solicitud #${number}`,
+
+color:16711680,
+
+thumbnail:{
+url:user.avatar
+},
+
+fields:[
+{name:"Usuario",value:user.discord,inline:true},
+{name:"Tipo",value:type,inline:true},
+{name:"Fecha",value:now,inline:false},
+{name:"Información",value:data}
+]
+
+}]
+
+};
+
+await fetch(REQUEST_WEBHOOK,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(embed)
+});
+
+
+const log = {
+
+username:"UG Logs",
+
+embeds:[{
+
+title:`Nueva solicitud (#${number})`,
+color:5763719,
+thumbnail:{url:user.avatar},
+
+fields:[
+{name:"Usuario",value:user.discord},
+{name:"Fecha",value:now}
+]
+
+}]
+
+};
+
+await fetch(LOG_WEBHOOK,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(log)
+});
+
+alert("Solicitud enviada correctamente");
+
+}
