@@ -134,19 +134,21 @@ showPopup("Solicitud enviada correctamente ✔");
 
 function sendClan(){
 
+const nombre = document.querySelector(".auto-name").value;
+const discord = document.querySelector(".auto-discord").value;
 const id = document.getElementById("clanID").value;
 const numero = document.getElementById("clanNumero").value;
 
-if(!id || !numero){
+if(!nombre || !discord || !id || !numero){
 showPopup("Completa todos los campos");
 return;
 }
 
 const data =
-`Nombre: ${document.querySelector(".auto-name").value}
+`Nombre: ${nombre}
 ID: ${id}
 Número: ${numero}
-Discord: ${document.querySelector(".auto-discord").value}`;
+Discord: ${discord}`;
 
 sendRequest("Clan",data);
 
