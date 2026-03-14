@@ -2,16 +2,19 @@ const LOG_WEBHOOK = "https://discord.com/api/webhooks/1482438491517489183/Uidjpc
 
 const REQUEST_WEBHOOK = "https://discord.com/api/webhooks/1450886959953350777/A49F0KxLzV5Hfc9PSlLmWu55JSelEIWlqvEAEc6BElSlyasHp-aGhI_8c_9v_JyOSP46";
 
-
 async function getUser(){
 
 const { data } = await supabaseClient.auth.getUser();
+
 const user = data.user;
 
 if(!user){
-showPopup("Debes iniciar sesión con discord");
+
+showPopup("Debes iniciar sesión con Discord");
 window.location="/";
+
 return;
+
 }
 
 const name = user.user_metadata.full_name;
@@ -29,38 +32,14 @@ return {name,discord,avatar,id};
 window.addEventListener("load",getUser);
 
 
-async function checkSpam(user_id){
-
-const yesterday = new Date();
-yesterday.setDate(yesterday.getDate()-1);
-
-const { data } = await supabaseClient
-.from("ug_requests")
-.select("*")
-.eq("user_id",user_id)
-.gte("created_at",yesterday.toISOString());
-
-if(data.length > 0){
-
-alert("Solo puedes enviar una solicitud cada 24h");
-
-return false;
-
-}
-
-return true;
-
-}
 
 async function sendRequest(type,data){
 
 const user = await getUser();
 
-if(!await checkSpam(user.id)) return;
-
 const now = new Date().toLocaleString();
 
-const { data:insert } = await supabaseClient
+const { data:insert,error } = await supabaseClient
 .from("ug_requests")
 .insert({
 user_id:user.id,
@@ -68,6 +47,14 @@ type:type,
 data:data
 })
 .select();
+
+if(error){
+
+showPopup("Error al enviar solicitud");
+
+return;
+
+}
 
 const number = insert[0].id;
 
@@ -86,10 +73,12 @@ url:user.avatar
 },
 
 fields:[
+
 {name:"Usuario",value:user.discord,inline:true},
 {name:"Tipo",value:type,inline:true},
 {name:"Fecha",value:now,inline:false},
 {name:"Información",value:data}
+
 ]
 
 }]
@@ -102,49 +91,29 @@ headers:{"Content-Type":"application/json"},
 body:JSON.stringify(embed)
 });
 
-
-const log = {
-
-username:"UG Logs",
-
-embeds:[{
-
-title:`Nueva solicitud (#${number})`,
-color:5763719,
-thumbnail:{url:user.avatar},
-
-fields:[
-{name:"Usuario",value:user.discord},
-{name:"Fecha",value:now}
-]
-
-}]
-
-};
-
-await fetch(LOG_WEBHOOK,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify(log)
-});
-
 showPopup("Solicitud enviada correctamente ✔");
 
 }
 
+
+
 function sendClan(){
 
-const nombre = document.querySelector(".auto-name").value;
-const discord = document.querySelector(".auto-discord").value;
-const id = document.getElementById("clanID").value;
-const numero = document.getElementById("clanNumero").value;
+const nombre=document.querySelector(".auto-name").value;
+const discord=document.querySelector(".auto-discord").value;
+const id=document.getElementById("clanID").value;
+const numero=document.getElementById("clanNumero").value;
 
 if(!nombre || !discord || !id || !numero){
+
 showPopup("Completa todos los campos");
+
 return;
+
 }
 
-const data =
+const data=
+
 `Nombre: ${nombre}
 ID: ${id}
 Número: ${numero}
@@ -154,40 +123,52 @@ sendRequest("Clan",data);
 
 }
 
+
+
 function sendEsport(){
 
-const edadVal = document.getElementById("edad").value;
-const paisVal = document.getElementById("pais").value;
-const idVal = document.getElementById("gameID").value;
-const numeroVal = document.getElementById("numero").value;
-const rolVal = document.getElementById("rol").value;
-const dispVal = document.getElementById("disponibilidad").value;
-const expVal = document.getElementById("exp").value;
+const edad=document.getElementById("edad").value;
+const pais=document.getElementById("pais").value;
+const id=document.getElementById("gameID").value;
+const numero=document.getElementById("numero").value;
+const rol=document.getElementById("rol").value;
+const disp=document.getElementById("disponibilidad").value;
+const exp=document.getElementById("exp").value;
 
-if(!edadVal || !paisVal || !idVal || !numeroVal || !rolVal || !dispVal || !expVal){
+if(!edad||!pais||!id||!numero||!rol||!disp||!exp){
+
 showPopup("Completa todos los campos");
+
 return;
+
 }
 
-const data =
-`Nombre: ${document.querySelector(".auto-name").value}
-Edad: ${edadVal}
-País: ${paisVal}
-ID: ${idVal}
-Número: ${numeroVal}
-Rol: ${rolVal}
-Disponibilidad: ${dispVal}
-Experiencia: ${expVal}`;
+const data=
+
+`Edad: ${edad}
+País: ${pais}
+ID: ${id}
+Número: ${numero}
+Rol: ${rol}
+Disponibilidad: ${disp}
+Experiencia: ${exp}`;
 
 sendRequest("Esport",data);
 
 }
 
+
+
 function showPopup(msg){
-document.getElementById("popupText").innerText = msg;
+
+document.getElementById("popupText").innerText=msg;
 document.getElementById("popupMessage").style.display="flex";
+
 }
 
+
 function closePopup(){
+
 document.getElementById("popupMessage").style.display="none";
+
 }
