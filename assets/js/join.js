@@ -134,8 +134,8 @@ alert("Solicitud enviada correctamente");
 
 function sendClan(){
 
-const id = clanID.value;
-const numero = clanNumero.value;
+const id = document.getElementById("clanID").value;
+const numero = document.getElementById("clanNumero").value;
 
 if(!id || !numero){
 alert("Completa todos los campos");
@@ -154,28 +154,28 @@ sendRequest("Clan",data);
 
 function sendEsport(){
 
-const edad = edad.value;
-const pais = pais.value;
-const id = gameID.value;
-const numero = numero.value;
-const rol = rol.value;
-const disp = disponibilidad.value;
-const exp = exp.value;
+const edadVal = document.getElementById("edad").value;
+const paisVal = document.getElementById("pais").value;
+const idVal = document.getElementById("gameID").value;
+const numeroVal = document.getElementById("numero").value;
+const rolVal = document.getElementById("rol").value;
+const dispVal = document.getElementById("disponibilidad").value;
+const expVal = document.getElementById("exp").value;
 
-if(!edad||!pais||!id||!numero||!rol||!disp||!exp){
+if(!edadVal || !paisVal || !idVal || !numeroVal || !rolVal || !dispVal || !expVal){
 alert("Completa todos los campos");
 return;
 }
 
 const data =
 `Nombre: ${document.querySelector(".auto-name").value}
-Edad: ${edad}
-País: ${pais}
-ID: ${id}
-Número: ${numero}
-Rol: ${rol}
-Disponibilidad: ${disp}
-Experiencia: ${exp}`;
+Edad: ${edadVal}
+País: ${paisVal}
+ID: ${idVal}
+Número: ${numeroVal}
+Rol: ${rolVal}
+Disponibilidad: ${dispVal}
+Experiencia: ${expVal}`;
 
 sendRequest("Esport",data);
 
