@@ -137,13 +137,11 @@ const select = document.getElementById("typeSelect");
 
 const clanForm = document.getElementById("clanForm");
 const esportForm = document.getElementById("esportForm");
-const staffForm = document.getElementById("staffForm");
 
 select.addEventListener("change", function(){
 
 clanForm.style.display="none";
 esportForm.style.display="none";
-staffForm.style.display="none";
 
 if(this.value === "clan"){
 clanForm.style.display="block";
@@ -153,9 +151,6 @@ if(this.value === "esport"){
 esportForm.style.display="block";
 }
 
-if(this.value === "staff"){
-staffForm.style.display="block";
-}
 
 });
 
