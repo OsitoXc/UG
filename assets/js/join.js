@@ -9,7 +9,7 @@ const { data } = await supabaseClient.auth.getUser();
 const user = data.user;
 
 if(!user){
-alert("Debes iniciar sesión con Discord");
+showPopup("Debes iniciar sesión con discord");
 window.location="/";
 return;
 }
