@@ -128,7 +128,7 @@ headers:{"Content-Type":"application/json"},
 body:JSON.stringify(log)
 });
 
-alert("Solicitud enviada correctamente");
+showPopup("Solicitud enviada correctamente ✔");
 
 }
 
@@ -138,7 +138,7 @@ const id = document.getElementById("clanID").value;
 const numero = document.getElementById("clanNumero").value;
 
 if(!id || !numero){
-alert("Completa todos los campos");
+showPopup("Completa todos los campos");
 return;
 }
 
@@ -163,7 +163,7 @@ const dispVal = document.getElementById("disponibilidad").value;
 const expVal = document.getElementById("exp").value;
 
 if(!edadVal || !paisVal || !idVal || !numeroVal || !rolVal || !dispVal || !expVal){
-alert("Completa todos los campos");
+showPopup("Completa todos los campos");
 return;
 }
 
@@ -179,4 +179,13 @@ Experiencia: ${expVal}`;
 
 sendRequest("Esport",data);
 
+}
+
+function showPopup(msg){
+document.getElementById("popupText").innerText = msg;
+document.getElementById("popupMessage").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popupMessage").style.display="none";
 }
