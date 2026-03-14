@@ -131,3 +131,23 @@ body:JSON.stringify(log)
 alert("Solicitud enviada correctamente");
 
 }
+
+function sendClan(){
+
+const id = clanID.value;
+const numero = clanNumero.value;
+
+if(!id || !numero){
+alert("Completa todos los campos");
+return;
+}
+
+const data =
+`Nombre: ${document.querySelector(".auto-name").value}
+ID: ${id}
+Número: ${numero}
+Discord: ${document.querySelector(".auto-discord").value}`;
+
+sendRequest("Clan",data);
+
+}
