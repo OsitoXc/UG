@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>United Glory | Join</title>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2756062357855550"
-crossorigin="anonymous"></script>
-
 <link rel="icon" type="image/png" href="../GLORY - B.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../assets/css/global.css">
+
 </head>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="/assets/js/auth.js"></script>
-
-<div id="popupMessage" class="popup">
-  <div class="popup-box">
-    <p id="popupText"></p>
-    <button onclick="closePopup()">Aceptar</button>
-  </div>
-</div>
 
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-<img src="../assets/img/animation.gif" alt="Loading animation">
+<!-- POPUP -->
+
+<div id="popupMessage" class="popup">
+<div class="popup-box">
+<p id="popupText"></p>
+<button onclick="closePopup()">Aceptar</button>
 </div>
+</div>
+
+
+<!-- LOADER -->
+
+<div id="loader">
+<img src="../assets/img/animation.gif">
+</div>
+
 
 <div class="navbar">
 
-  <div class="navbar-inner">
-    
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="navbar-inner">
 
-    <div class="site-name">UNITED GLORY</div>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
 
-    <div id="userBox"></div>
+<div class="site-name">UNITED GLORY</div>
 
-  </div>
-
-  <div id="menu" class="dropdown-menu">
-    <a href="/">HOME</a>
-    <a href="/join">JOIN</a>
-    <a href="/news">NEWS</a>
-  </div>
+<div id="userBox"></div>
 
 </div>
 
+<div id="menu" class="dropdown-menu">
+<a href="/">HOME</a>
+<a href="/join">JOIN</a>
+<a href="/news">NEWS</a>
+</div>
+
+</div>
+
+
 <main class="container">
+
 
 <section class="team-banner join-banner">
 
@@ -64,7 +69,7 @@ crossorigin="anonymous"></script>
 
 </section>
 
-<!-- SELECTOR -->
+
 
 <section class="join-box">
 
@@ -81,33 +86,31 @@ crossorigin="anonymous"></script>
 </section>
 
 
-<!-- FORMULARIO CLAN -->
 
 <section id="clanForm" class="form-box">
 
 <h3>Solicitud Clan</h3>
 
-<input class="auto-name" placeholder="Nombre" required>
-<input id="clanID" placeholder="ID" required>
-<input id="clanNumero" placeholder="Número" required>
-<input class="auto-discord" placeholder="Discord" required>
+<input class="auto-name" placeholder="Nombre">
+<input id="clanID" placeholder="ID">
+<input id="clanNumero" placeholder="Número">
+<input class="auto-discord" placeholder="Discord">
 
 <button onclick="sendClan()">Enviar solicitud</button>
 
 </section>
 
 
-<!-- FORMULARIO ESPORT -->
 
 <section id="esportForm" class="form-box">
 
 <h3>Solicitud Esport</h3>
 
-<input class="auto-name" placeholder="Nombre" required>
-<input id="edad" placeholder="Edad" required>
-<input id="pais" placeholder="País" required>
-<input id="gameID" placeholder="ID" required>
-<input id="numero" placeholder="Número" required>
+<input class="auto-name" placeholder="Nombre">
+<input id="edad" placeholder="Edad">
+<input id="pais" placeholder="País">
+<input id="gameID" placeholder="ID">
+<input id="numero" placeholder="Número">
 
 <select id="rol">
 <option value="">Rol</option>
@@ -117,7 +120,7 @@ crossorigin="anonymous"></script>
 <option>Soporte</option>
 </select>
 
-<input id="disponibilidad" placeholder="Disponibilidad" required>
+<input id="disponibilidad" placeholder="Disponibilidad">
 
 <textarea id="exp" placeholder="Experiencia"></textarea>
 
@@ -128,42 +131,57 @@ crossorigin="anonymous"></script>
 
 </main>
 
+
 <footer class="footer-card">
 ©2025 United Glory | All rights reserved.
 </footer>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script src="/assets/js/auth.js"></script>
 
 <script src="../assets/js/navbar.js"></script>
 <script src="../assets/js/monitor.js"></script>
 <script src="../assets/js/join.js"></script>
 
+
 <script>
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded",function(){
 
 const select = document.getElementById("typeSelect");
 
 const clanForm = document.getElementById("clanForm");
 const esportForm = document.getElementById("esportForm");
 
-select.addEventListener("change", function(){
+clanForm.style.display="none";
+esportForm.style.display="none";
+
+select.addEventListener("change",function(){
 
 clanForm.style.display="none";
 esportForm.style.display="none";
 
-if(this.value === "clan"){
+if(this.value==="clan"){
+
 clanForm.style.display="block";
+
 }
 
-if(this.value === "esport"){
+if(this.value==="esport"){
+
 esportForm.style.display="block";
-}
 
+}
 
 });
 
 });
 
 </script>
+
 
 </body>
 </html>
