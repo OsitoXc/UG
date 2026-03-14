@@ -38,6 +38,7 @@ crossorigin="anonymous"></script>
 
   <div id="menu" class="dropdown-menu">
     <a href="/">HOME</a>
+    <a href="/join">JOIN</a>
     <a href="/news">NEWS</a>
   </div>
 
@@ -66,8 +67,7 @@ crossorigin="anonymous"></script>
 
 <option value="">Seleccionar...</option>
 <option value="clan">Clan</option>
-<option value="esport">eSport</option>
-<option value="staff">Staff</option>
+<option value="esport">Esport</option>
 
 </select>
 
@@ -80,11 +80,12 @@ crossorigin="anonymous"></script>
 
 <h3>Solicitud Clan</h3>
 
-<input type="text" placeholder="Nombre">
-<input type="text" placeholder="ID del juego">
-<input type="text" placeholder="Número">
+<input class="auto-name" placeholder="Nombre" required>
+<input id="clanID" placeholder="ID" required>
+<input id="clanNumero" placeholder="Número" required>
+<input class="auto-discord" placeholder="Discord" required>
 
-<button>Enviar solicitud</button>
+<button onclick="sendClan()">Enviar solicitud</button>
 
 </section>
 
