@@ -82,6 +82,7 @@ const menu = document.getElementById("userDropdown");
 
 if(menu && !box.contains(e.target)){
 menu.style.display="none";
+box.classList.remove("active");
 }
 
 });
