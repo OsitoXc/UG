@@ -59,7 +59,7 @@ async function login(){
 await supabaseClient.auth.signInWithOAuth({
 provider:"discord",
 options:{
-redirectTo: window.location.origin + "/join"
+redirectTo: window.location.origin + "/"
 }
 });
 
