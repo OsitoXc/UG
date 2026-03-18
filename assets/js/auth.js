@@ -19,6 +19,7 @@ box.innerHTML = `
 <div class="user-info" onclick="toggleUserMenu()">
 <img src="${avatar}">
 <span>${name}</span>
+<span class="arrow">▼</span>
 </div>
 
 <div id="userDropdown" class="user-dropdown">
