@@ -741,3 +741,18 @@ border-radius:8px;
 .user-dropdown button:hover{
 background:#1f2937;
 }
+
+.arrow{
+font-size:12px;
+opacity:0.7;
+transition:0.3s;
+}
+
+.user-info:hover .arrow{
+opacity:1;
+}
+
+/* animación cuando abre */
+.user-menu.active .arrow{
+transform:rotate(180deg);
+}
