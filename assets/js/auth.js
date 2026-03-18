@@ -23,8 +23,6 @@ box.innerHTML = `
 </div>
 
 <div id="userDropdown" class="user-dropdown">
-<a href="/profile">👤 Perfil</a>
-<a href="/join">📩 Solicitud</a>
 <button onclick="logout()">🚪 Cerrar sesión</button>
 </div>
 `;
