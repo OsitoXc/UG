@@ -41,10 +41,17 @@ box.innerHTML = `
 function toggleUserMenu(){
 
 const menu = document.getElementById("userDropdown");
+const box = document.getElementById("userBox");
 
 if(!menu) return;
 
-menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+if(menu.style.display === "flex"){
+menu.style.display = "none";
+box.classList.remove("active");
+}else{
+menu.style.display = "flex";
+box.classList.add("active");
+}
 
 }
 
