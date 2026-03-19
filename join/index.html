@@ -173,18 +173,6 @@
 
 <script>
 
-document.addEventListener("DOMContentLoaded",function(){
-
-const select = document.getElementById("typeSelect");
-
-const clanForm = document.getElementById("clanForm");
-const esportForm = document.getElementById("esportForm");
-
-clanForm.style.display="none";
-esportForm.style.display="none";
-
-select.addEventListener("change", async function(){
-
 // 🔐 comprobar login
 const { data } = await supabaseClient.auth.getUser();
 
