@@ -172,27 +172,33 @@ const esportForm = document.getElementById("esportForm");
 clanForm.style.display="none";
 esportForm.style.display="none";
 
-select.addEventListener("change",function(){
+select.addEventListener("change", async function(){
 
+// 🔐 comprobar login
+const { data } = await supabaseClient.auth.getUser();
+
+if(!data.user){
+showPopup("Debes iniciar sesión con Discord primero");
+this.value="";
+return;
+}
+
+// ocultar todo
 clanForm.style.display="none";
 esportForm.style.display="none";
 
+// mostrar el seleccionado
 if(this.value==="clan"){
-
 clanForm.style.display="block";
-
 }
 
 if(this.value==="esport"){
-
 esportForm.style.display="block";
-
 }
 
 });
 
 });
-
 </script>
 
 
