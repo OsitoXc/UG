@@ -122,14 +122,18 @@
 </div>
 
 <!-- SELECT BONITO -->
-<div class="custom-select" onclick="toggleRol()">
-<span id="rolText">Seleccionar rol</span>
-<div id="rolOptions" class="options">
-<div onclick="setRol('Rusher L1')">Rusher L1</div>
-<div onclick="setRol('Rusher L2')">Rusher L2</div>
-<div onclick="setRol('Granadero / IGL')">Granadero / IGL</div>
-<div onclick="setRol('Soporte')">Soporte</div>
-</div>
+<div class="rol-box">
+  <div class="rol-selected" onclick="toggleRol()">
+    <span id="rolText">Seleccionar rol</span>
+    ▼
+  </div>
+
+  <div id="rolOptions" class="rol-options">
+    <div onclick="setRol('Rusher L1')">Rusher L1</div>
+    <div onclick="setRol('Rusher L2')">Rusher L2</div>
+    <div onclick="setRol('Granadero / IGL')">Granadero / IGL</div>
+    <div onclick="setRol('Soporte')">Soporte</div>
+  </div>
 </div>
 
 <input id="disponibilidad" placeholder="Disponibilidad">
