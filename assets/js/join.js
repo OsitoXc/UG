@@ -187,3 +187,31 @@ function setRol(rol){
   document.getElementById("rolText").innerText = rol;
   document.getElementById("rolOptions").style.display="none";
 }
+
+let selectedType = "";
+
+function toggleType(){
+  const menu = document.getElementById("typeOptions");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function selectType(type){
+
+  selectedType = type;
+
+  document.getElementById("typeText").innerText =
+    type === "clan" ? "Clan" : "Esport";
+
+  document.getElementById("typeOptions").style.display = "none";
+
+  document.getElementById("clanForm").style.display = "none";
+  document.getElementById("esportForm").style.display = "none";
+
+  if(type === "clan"){
+    document.getElementById("clanForm").style.display = "block";
+  }
+
+  if(type === "esport"){
+    document.getElementById("esportForm").style.display = "block";
+  }
+}
