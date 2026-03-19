@@ -130,48 +130,6 @@ Puedes ver tu solicitud en nuestro Discord 📩
 Revisa el canal de solicitudes.`);
 }
 
-  // 📤 WEBHOOK SOLICITUD
-  await fetch(REQUEST_WEBHOOK,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      username:"United Glory",
-      embeds:[{
-        title:`Solicitud #${number}`,
-        color:16711680,
-        thumbnail:{ url:user.avatar },
-        fields:[
-          {name:"Usuario",value:user.discord,inline:true},
-          {name:"Tipo",value:type,inline:true},
-          {name:"Fecha",value:now},
-          {name:"Información",value:data}
-        ]
-      }]
-    })
-  });
-
-  // 📊 LOG GLOBAL
-  await fetch(LOG_WEBHOOK,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      username:"UG Logs",
-      embeds:[{
-        title:`Nueva solicitud (#${number})`,
-        color:5763719,
-        thumbnail:{url:user.avatar},
-        fields:[
-          {name:"Usuario",value:user.discord},
-          {name:"Fecha",value:now}
-        ]
-      }]
-    })
-  });
-
-  showLoader(false);
-  showPopup("Solicitud enviada correctamente ✔");
-}
-
 // 🟣 CLAN
 function sendClan(){
 
