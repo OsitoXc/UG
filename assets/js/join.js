@@ -47,10 +47,10 @@ async function sendRequest(type,data){
   .select();
 
   if(error){
-    showLoader(false);
-    showPopup("Error al enviar solicitud");
-    return;
-  }
+console.error(error);
+showPopup("Error: " + error.message);
+return;
+}
 
   const number = insert[0].id;
 
