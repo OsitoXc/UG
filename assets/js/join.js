@@ -125,38 +125,45 @@ sendRequest("Clan",data);
 
 
 
-function sendEsport(){
+async function sendEsport(){
 
-const edad=document.getElementById("edad").value;
-const pais=document.getElementById("pais").value;
-const id=document.getElementById("gameID").value;
-const numero=document.getElementById("numero").value;
-const rol=document.getElementById("rol").value;
-const disp=document.getElementById("disponibilidad").value;
-const exp=document.getElementById("exp").value;
+const user = await getUser();
 
-if(!edad||!pais||!id||!numero||!rol||!disp||!exp){
-
-showPopup("Completa todos los campos");
-
+if(!user){
+showPopup("Debes iniciar sesión con Discord para enviar solicitud");
 return;
-
 }
 
-const data=
+const nombre = document.querySelector(".auto-name").value;
+const discord = document.querySelector(".auto-discord").value;
+const edad = document.getElementById("edad").value;
+const pais = document.getElementById("pais").value;
+const id = document.getElementById("gameID").value;
+const numero = document.getElementById("numero").value;
+const disp = document.getElementById("disponibilidad").value;
+const exp = document.getElementById("exp").value;
+const redes = document.getElementById("redes").value;
 
-`Edad: ${edad}
-País: ${pais}
-ID: ${id}
+if(!nombre || !discord || !edad || !pais || !id || !numero || !selectedRol || !disp || !exp){
+showPopup("Completa todos los campos obligatorios");
+return;
+}
+
+const data =
+`Nombre: ${nombre}
+Discord: ${discord}
 Número: ${numero}
-Rol: ${rol}
+ID: ${id}
+Edad: ${edad}
+País: ${pais}
+Rol: ${selectedRol}
 Disponibilidad: ${disp}
-Experiencia: ${exp}`;
+Experiencia: ${exp}
+Redes: ${redes || "N/A"}`;
 
 sendRequest("Esport",data);
 
 }
-
 
 
 function showPopup(msg){
