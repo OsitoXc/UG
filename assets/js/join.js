@@ -51,33 +51,84 @@ return true;
 // 📩 ENVIAR SOLICITUD
 async function sendRequest(type,data){
 
-  const user = await getUser();
+const user = await getUser();
+if(!user) return;
 
-  if(!user){
-    showPopup("Debes iniciar sesión con Discord");
-    return;
-  }
+// 🔒 Anti spam
+if(!await checkSpam(user.id)) return;
 
-  showLoader(true);
+// 🎬 Mostrar loader
+document.getElementById("loader").style.display = "flex";
 
-  const now = new Date().toLocaleString();
+const now = new Date().toLocaleString();
 
-  const { data:insert, error } = await supabaseClient
-  .from("ug_requests")
-  .insert({
-    user_id:user.id,
-    type:type,
-    data:data
-  })
-  .select();
+const { data:insert, error } = await supabaseClient
+.from("ug_requests")
+.insert({
+user_id:user.id,
+type:type,
+data:data
+})
+.select();
 
-  if(error){
-console.error(error);
-showPopup("Error: " + error.message);
+if(error){
+document.getElementById("loader").style.display = "none";
+showPopup("Error al enviar solicitud ❌");
 return;
 }
 
-  const number = insert[0].id;
+const number = insert[0].id;
+
+// 📩 Webhook solicitud
+await fetch(REQUEST_WEBHOOK,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+username:"United Glory",
+embeds:[{
+title:`Solicitud #${number}`,
+color:16711680,
+thumbnail:{url:user.avatar},
+fields:[
+{name:"Usuario",value:user.discord,inline:true},
+{name:"Tipo",value:type,inline:true},
+{name:"Fecha",value:now},
+{name:"Información",value:data}
+]
+}]
+})
+});
+
+// 📜 Log
+await fetch(LOG_WEBHOOK,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+username:"UG Logs",
+embeds:[{
+title:`Nueva solicitud (#${number})`,
+color:5763719,
+thumbnail:{url:user.avatar},
+fields:[
+{name:"Usuario",value:user.discord},
+{name:"Fecha",value:now}
+]
+}]
+})
+});
+
+// ⏳ Ocultar loader
+document.getElementById("loader").style.display = "none";
+
+// 🧹 Limpiar formulario
+document.querySelectorAll("input, textarea").forEach(e=>e.value="");
+
+// 🎉 Mensaje PRO
+showPopup(`Solicitud enviada correctamente ✔
+
+Puedes ver tu solicitud en nuestro Discord 📩
+Revisa el canal de solicitudes.`);
+}
 
   // 📤 WEBHOOK SOLICITUD
   await fetch(REQUEST_WEBHOOK,{
