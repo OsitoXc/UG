@@ -2,21 +2,6 @@ const LOG_WEBHOOK = "https://discord.com/api/webhooks/1482438491517489183/Uidjpc
 
 const REQUEST_WEBHOOK = "https://discord.com/api/webhooks/1450886959953350777/A49F0KxLzV5Hfc9PSlLmWu55JSelEIWlqvEAEc6BElSlyasHp-aGhI_8c_9v_JyOSP46";
 
-async function getUser(){
-
-const { data } = await supabaseClient.auth.getUser();
-
-const user = data.user;
-
-if(!user){
-
-showPopup("Debes iniciar sesión con Discord");
-window.location="/";
-
-return;
-
-}
-
 const name = user.user_metadata.full_name;
 const discord = user.user_metadata.name;
 const avatar = user.user_metadata.avatar_url;
