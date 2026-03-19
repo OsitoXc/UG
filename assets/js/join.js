@@ -23,6 +23,31 @@ async function getUser(){
 // 🚀 AL CARGAR
 window.addEventListener("load", getUser);
 
+async function checkSpam(user_id){
+
+const now = new Date();
+const lastHour = new Date(now.getTime() - (60 * 60 * 1000)); // 1 hora
+
+const { data, error } = await supabaseClient
+.from("ug_requests")
+.select("*")
+.eq("user_id", user_id)
+.gte("created_at", lastHour.toISOString());
+
+if(error){
+console.error(error);
+return false;
+}
+
+if(data.length >= 2){ // máximo 2 solicitudes por hora
+showPopup("Espera antes de enviar otra solicitud ⏳");
+return false;
+}
+
+return true;
+
+}
+
 // 📩 ENVIAR SOLICITUD
 async function sendRequest(type,data){
 
