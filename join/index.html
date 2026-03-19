@@ -106,28 +106,41 @@
 
 <h3>Solicitud Esport</h3>
 
+<div class="input-group">
 <input class="auto-name" placeholder="Nombre">
+<input class="auto-discord" placeholder="Discord">
+</div>
+
+<div class="input-group">
+<input id="numero" placeholder="Número">
+<input id="gameID" placeholder="ID del juego">
+</div>
+
+<div class="input-group">
 <input id="edad" placeholder="Edad">
 <input id="pais" placeholder="País">
-<input id="gameID" placeholder="ID">
-<input id="numero" placeholder="Número">
+</div>
 
-<select id="rol">
-<option value="">Rol</option>
-<option>Rusher L1</option>
-<option>Rusher L2</option>
-<option>Granadero/IGL</option>
-<option>Soporte</option>
-</select>
+<!-- SELECT BONITO -->
+<div class="custom-select" onclick="toggleRol()">
+<span id="rolText">Seleccionar rol</span>
+<div id="rolOptions" class="options">
+<div onclick="setRol('Rusher L1')">Rusher L1</div>
+<div onclick="setRol('Rusher L2')">Rusher L2</div>
+<div onclick="setRol('Granadero / IGL')">Granadero / IGL</div>
+<div onclick="setRol('Soporte')">Soporte</div>
+</div>
+</div>
 
 <input id="disponibilidad" placeholder="Disponibilidad">
 
 <textarea id="exp" placeholder="Experiencia"></textarea>
 
+<input id="redes" placeholder="Redes (opcional)">
+
 <button onclick="sendEsport()">Enviar solicitud</button>
 
 </section>
-
 
 </main>
 
