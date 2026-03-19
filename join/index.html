@@ -75,12 +75,19 @@
 
 <h2>Selecciona una opción</h2>
 
-<select id="typeSelect">
+<div class="type-box">
 
-<option value="">Seleccionar...</option>
-<option value="clan">Clan</option>
-<option value="esport">Esport</option>
+  <div class="type-selected" onclick="toggleType()">
+    <span id="typeText">Seleccionar...</span>
+    ▼
+  </div>
 
+  <div id="typeOptions" class="type-options">
+    <div onclick="selectType('clan')">Clan</div>
+    <div onclick="selectType('esport')">Esport</div>
+  </div>
+
+</div>
 </select>
 
 </section>
