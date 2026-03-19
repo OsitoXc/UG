@@ -843,3 +843,37 @@ cursor:pointer;
 .rol-options div:hover{
 background:#1f2937;
 }
+
+.type-box{
+position:relative;
+margin-top:10px;
+}
+
+.type-selected{
+background:#0b0f1a;
+padding:14px;
+border-radius:12px;
+cursor:pointer;
+display:flex;
+justify-content:space-between;
+}
+
+.type-options{
+display:none;
+position:absolute;
+width:100%;
+background:#111827;
+border-radius:12px;
+margin-top:5px;
+overflow:hidden;
+z-index:10;
+}
+
+.type-options div{
+padding:12px;
+cursor:pointer;
+}
+
+.type-options div:hover{
+background:#1f2937;
+}
