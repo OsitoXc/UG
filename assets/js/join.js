@@ -172,3 +172,16 @@ function closePopup(){
 document.getElementById("popupMessage").style.display="none";
 
 }
+
+let selectedRol = "";
+
+function toggleRol(){
+const menu = document.getElementById("rolOptions");
+menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function setRol(rol){
+selectedRol = rol;
+document.getElementById("rolText").innerText = rol;
+document.getElementById("rolOptions").style.display="none";
+}
