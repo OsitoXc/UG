@@ -1,44 +1,727 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>United Glory | Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2756062357855550"
-     crossorigin="anonymous"></script>
+    <title>United Glory | Store</title>
 
-<link rel="icon" type="image/png" href="../GLORY - B.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <meta name="description"
+          content="UG Store de United Glory. Descubre nuestros productos digitales para tus juegos favoritos.">
 
-<link rel="stylesheet" href="../assets/css/global.css">
+    <meta name="theme-color" content="#0c0d11">
+
+    <!-- CSS GLOBAL COMPARTIDO -->
+    <link rel="stylesheet" href="/assets/css/global.css">
+
+    <!-- Fuente Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        /* ===== STORE HERO ===== */
+
+        .store-hero {
+            text-align: center;
+            padding: 35px 20px 30px;
+        }
+
+        .store-logo {
+            width: 125px;
+            max-width: 50%;
+            height: auto;
+            object-fit: contain;
+            margin: 0 auto 20px;
+        }
+
+        .store-badge {
+            display: inline-block;
+            padding: 7px 13px;
+            border: 1px solid rgba(143, 211, 255, .25);
+            background: rgba(143, 211, 255, .08);
+            border-radius: 30px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .store-hero h1 {
+            font-size: clamp(27px, 6vw, 42px);
+            font-weight: 800;
+            line-height: 1.25;
+            margin: 0;
+        }
+
+        .store-hero h1 span {
+            color: var(--accent);
+        }
+
+        .store-hero p {
+            max-width: 550px;
+            margin: 15px auto 22px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 12px 19px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: .25s;
+        }
+
+        .hero-btn.primary {
+            background: var(--accent);
+            color: #0c0d11;
+        }
+
+        .hero-btn.secondary {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.03);
+            color: white;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ===== SECTION HEADERS ===== */
+
+        .store-section {
+            margin-top: 10px;
+        }
+
+        .store-heading {
+            margin-bottom: 18px;
+        }
+
+        .store-heading h2 {
+            font-size: 21px;
+            margin: 0 0 7px;
+            font-weight: 800;
+        }
+
+        .store-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ===== GAME CARDS ===== */
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .game-card {
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            text-decoration: none;
+            color: white;
+            transition: transform .25s, border-color .25s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(143,211,255,.45);
+        }
+
+        .game-image {
+            height: 155px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(143,211,255,.12),
+                    rgba(12,13,17,.15) 70%
+                );
+            padding: 20px;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .game-info {
+            padding: 16px;
+        }
+
+        .game-info h3 {
+            margin: 0 0 7px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .game-info p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+            margin: 0 0 15px;
+        }
+
+        .game-link {
+            display: block;
+            text-align: center;
+            padding: 11px;
+            border-radius: 10px;
+            background: rgba(143,211,255,.1);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .game-status {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 8px;
+            border-radius: 7px;
+            margin-bottom: 10px;
+            color: var(--accent);
+            background: rgba(143,211,255,.1);
+        }
+
+        .game-status.development {
+            color: #facc15;
+            background: rgba(250,204,21,.08);
+        }
+
+        /* ===== HOW TO BUY ===== */
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .step-card {
+            padding: 17px 14px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,.02);
+        }
+
+        .step-number {
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(143,211,255,.12);
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 13px;
+        }
+
+        .step-card h3 {
+            font-size: 13px;
+            margin: 0 0 8px;
+        }
+
+        .step-card p {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* ===== INFORMATION BANNER ===== */
+
+        .store-notice {
+            padding: 19px;
+            border-radius: 16px;
+            border: 1px solid rgba(143,211,255,.18);
+            background: linear-gradient(
+                135deg,
+                rgba(143,211,255,.09),
+                rgba(255,255,255,.015)
+            );
+        }
+
+        .store-notice h3 {
+            font-size: 15px;
+            margin: 0 0 8px;
+        }
+
+        .store-notice p {
+            font-size: 12px;
+            line-height: 1.8;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        /* ===== STORE SOCIALS ===== */
+
+        .store-socials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .store-socials a {
+            display: inline-block;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 600;
+            transition: .25s;
+        }
+
+        .store-socials a:hover {
+            color: white;
+            background: rgba(143,211,255,.1);
+        }
+
+        /* ===== LEGAL FOOTER ===== */
+
+        .store-footer {
+            max-width: 960px;
+            margin: 20px auto 0;
+            padding: 25px 16px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-brand {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .store-footer p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.8;
+            margin: 7px 0;
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            margin: 17px 0;
+        }
+
+        .legal-links a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 11px;
+            transition: .2s;
+        }
+
+        .legal-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 13px;
+                gap: 19px;
+            }
+
+            .card {
+                padding: 17px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .game-image {
+                height: 175px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-card {
+                display: flex;
+                gap: 13px;
+                align-items: flex-start;
+            }
+
+            .step-number {
+                flex-shrink: 0;
+                margin-bottom: 0;
+            }
+
+            .step-card h3 {
+                font-size: 13px;
+            }
+
+            .store-socials {
+                flex-direction: column;
+            }
+
+            .store-socials a {
+                text-align: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .game-card,
+            .hero-btn,
+            .store-socials a {
+                transition: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="navbar">
+    <!--
+        NAVBAR COMPARTIDO:
+        Conserva aquí el sistema de navbar que ya utiliza tu web.
+        No crees un segundo navbar si navbar.js ya lo genera.
+    -->
 
-  <div class="navbar-inner">
-    
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <main class="container">
 
-    <div class="site-name">UNITED GLORY</div>
+        <!-- ===== PRESENTACIÓN ===== -->
 
-    <div id="userBox" class="user-menu"></div>
+        <section class="card store-hero">
 
-  </div>
+            <img
+                src="/assets/img/logo.png"
+                alt="UG Store - United Glory"
+                class="store-logo"
+            >
 
-  <div id="menu" class="dropdown-menu">
-    <a href="/">HOME</a>
-    <a href="/news">NEWS</a>
-  </div>
+            <div class="store-badge">
+                UNITED GLORY · DIGITAL STORE
+            </div>
 
-</div>
-  
-<body><div class="topline"></div><header><nav class="nav"><a class="brand" href="#inicio"><span class="mark">UG</span><span>UG <span style="color:var(--blue)">STORE</span></span></a><div class="links"><a href="#diamantes">Diamantes</a><a href="#creadores">Creadores</a><a href="#faq">Ayuda</a><a class="outline" href="https://ugesport.icu/">Sitio principal ↗</a></div></nav></header>
-<main id="inicio"><section class="hero"><div><div class="pill"><span class="dot"></span> Proyecto en desarrollo</div><h1>Tu juego.<br><span>Tu siguiente nivel.</span></h1><p class="intro">Estamos preparando una nueva forma de recargar diamantes para Free Fire. Una experiencia sencilla, precios claros y un programa para creadores que quieren crecer con nosotros.</p><div class="actions"><a class="btn primary" href="#diamantes">Explorar catálogo ↓</a><a class="btn secondary" href="#creadores">Programa de creadores ↗</a></div></div><div class="art" aria-label="Diamante azul decorativo"><div class="ring"></div><div class="gem"></div><div class="artlabel"><span>UG STORE</span><span>FREE FIRE DIAMONDS</span></div></div></section>
-<section id="diamantes"><div class="head"><div><h2>Catálogo de diamantes</h2><p>Paquetes y proceso de recarga en preparación.</p></div><span class="soon">LANZAMIENTO PRÓXIMAMENTE</span></div><div class="products"><article class="product featured"><div class="prodtop"><div class="prodicon">◆</div><span class="tag">Paquete inicial</span></div><h3>100 diamantes</h3><p>Free Fire · Recarga digital</p><div class="price">$19 <small>MXN</small></div><p class="note">Precio de referencia inicial; puede cambiar antes del lanzamiento.</p><button class="btn primary disabled" disabled>Próximamente</button></article><article class="product"><div class="prodtop"><div class="prodicon">＋</div><span class="tag">En preparación</span></div><h3>Más paquetes</h3><p>Estamos revisando opciones de recarga.</p><div class="price">— <small>MXN</small></div><p class="note">Publicaremos más opciones cuando confirmemos proveedor y costos.</p><button class="btn secondary disabled" disabled>No disponible</button></article><article class="product"><div class="prodtop"><div class="prodicon">%</div><span class="tag">Beneficio previsto</span></div><h3>Código de creador</h3><p>Apoya a tu creador favorito.</p><div class="price">3% <small>de descuento previsto</small></div><p class="note">Los códigos se activarán cuando el programa esté listo.</p><a class="btn secondary" href="#creadores">Conocer el programa</a></article></div><div class="notice"><strong>Importante:</strong> UG Store está en desarrollo. Por ahora no se reciben pagos ni pedidos. El precio mostrado es una referencia y puede cambiar antes del lanzamiento.</div></section>
-<section class="features"><article class="feature"><span class="num">01 / CLARIDAD</span><h3>Precios transparentes</h3><p>Mostraremos el costo final antes de confirmar una compra.</p></article><article class="feature"><span class="num">02 / SEGURIDAD</span><h3>Proceso de pago</h3><p>Estamos evaluando proveedores y métodos de pago antes de abrir pedidos.</p></article><article class="feature"><span class="num">03 / COMUNIDAD</span><h3>Creadores</h3><p>Un programa pensado para colaborar con creadores pequeños y sus comunidades.</p></article></section>
-<section class="creator" id="creadores"><div><div class="pill">UG Creator Program</div><h2>Crece con UG Store.</h2><p>Estamos preparando un programa de códigos para creadores de contenido. Queremos conectar con personas que compartan contenido gaming y quieran participar desde las primeras etapas del proyecto.</p><div class="actions"><a class="btn primary" href="mailto:contacto@ugesport.icu?subject=Inter%C3%A9s%20en%20UG%20Creator%20Program">Me interesa colaborar ↗</a></div><p style="font-size:10px">El correo es provisional; debe configurarse antes del lanzamiento.</p></div><div class="steps"><div class="step"><b>01</b><div><strong>Obtén tu código</strong><span>Se asignará cuando el programa esté activo.</span></div></div><div class="step"><b>02</b><div><strong>Compártelo con tu comunidad</strong><span>El descuento previsto para clientes es del 3%.</span></div></div><div class="step"><b>03</b><div><strong>Acumula compras válidas</strong><span>Plan inicial: 1 punto por compra válida y recompensa de 100 diamantes por cada 20 puntos, sujeto a reglas finales.</span></div></div></div></section>
-<section class="faq" id="faq"><div class="head"><div><h2>Preguntas frecuentes</h2><p>Lo que debes saber antes del lanzamiento.</p></div></div><details><summary>¿Ya puedo comprar diamantes?</summary><p>Todavía no. Estamos buscando proveedor y preparando el proceso de pago. No envíes dinero ni datos personales por ahora.</p></details><details><summary>¿Cómo funcionarán los códigos de creador?</summary><p>El plan inicial contempla un 3% de descuento para el cliente. Los códigos y el seguimiento de compras se activarán cuando el sistema esté listo.</p></details><details><summary>¿Cuándo estará disponible?</summary><p>Aún no hay fecha confirmada. Publicaremos los detalles cuando estén listos el proveedor, los métodos de pago y las condiciones de entrega.</p></details><details><summary>¿UG Store está afiliada oficialmente a Garena?</summary><p>No afirmamos ninguna afiliación oficial. Free Fire y sus marcas relacionadas pertenecen a sus respectivos titulares. UG Store es un proyecto independiente en desarrollo.</p></details></section></main>
-<footer><div class="foot"><span>© 2026 <strong>UG Store</strong>. Todos los derechos reservados.</span><span>Proyecto independiente · En desarrollo</span></div></footer></body></html>
+            <h1>
+                Tu próxima compra,<br>
+                <span>aquí comienza.</span>
+            </h1>
+
+            <p>
+                Bienvenido a UG Store, la tienda digital de United Glory.
+                Explora nuestros juegos disponibles y encuentra los
+                productos que buscas.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#juegos" class="hero-btn primary">
+                    Explorar juegos
+                </a>
+
+                <a href="#como-comprar" class="hero-btn secondary">
+                    Cómo comprar
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- ===== ELEGIR JUEGO ===== -->
+
+        <section class="store-section" id="juegos">
+
+            <div class="store-heading">
+                <h2>Elige tu juego</h2>
+
+                <p>
+                    Selecciona un juego para explorar los productos
+                    disponibles en UG Store.
+                </p>
+            </div>
+
+            <div class="games-grid">
+
+                <!-- FREE FIRE -->
+
+                <a
+                    href="/store/free-fire/"
+                    class="game-card"
+                    aria-label="Explorar la tienda de Free Fire"
+                >
+
+                    <div class="game-image">
+                        <img
+                            src="/assets/img/freefire.png"
+                            alt="Free Fire"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="game-info">
+
+                        <span class="game-status">
+                            TIENDA
+                        </span>
+
+                        <h3>Free Fire</h3>
+
+                        <p>
+                            Explora los productos disponibles para
+                            Free Fire y consulta sus precios.
+                        </p>
+
+                        <span class="game-link">
+                            Explorar tienda →
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <!-- ROBLOX -->
+
+                <a
+                    href="#contacto"
+                    class="game-card"
+                    aria-label="Consultar disponibilidad de productos de Roblox"
+                >
+
+                    <div class="game-image">
+                        <img
+                            src="/assets/img/roblox.png"
+                            alt="Roblox"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="game-info">
+
+                        <span class="game-status development">
+                            EN DESARROLLO
+                        </span>
+
+                        <h3>Roblox</h3>
+
+                        <p>
+                            Estamos preparando esta sección.
+                            Consulta con nosotros su disponibilidad.
+                        </p>
+
+                        <span class="game-link">
+                            Próximamente
+                        </span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===== CÓMO COMPRAR ===== -->
+
+        <section class="store-section" id="como-comprar">
+
+            <div class="store-heading">
+                <h2>¿Cómo comprar?</h2>
+
+                <p>
+                    Conoce los pasos generales antes de realizar
+                    tu pedido.
+                </p>
+            </div>
+
+            <div class="steps-grid">
+
+                <article class="step-card">
+
+                    <div class="step-number">01</div>
+
+                    <div>
+                        <h3>Elige tu producto</h3>
+
+                        <p>
+                            Entra en la tienda de tu juego y
+                            selecciona el producto que deseas.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="step-card">
+
+                    <div class="step-number">02</div>
+
+                    <div>
+                        <h3>Revisa tu pedido</h3>
+
+                        <p>
+                            Comprueba el precio, los datos solicitados
+                            y las condiciones antes de continuar.
+                        </p>
+                    </div>
+
+                </article>
+
+
+                <article class="step-card">
+
+                    <div class="step-number">03</div>
+
+                    <div>
+                        <h3>Completa la compra</h3>
+
+                        <p>
+                            Sigue las instrucciones de compra que
+                            aparezcan en la página del producto.
+                        </p>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===== AVISO ===== -->
+
+        <section class="store-notice">
+
+            <h3>Antes de realizar tu pedido</h3>
+
+            <p>
+                Revisa cuidadosamente los datos de tu cuenta, el
+                producto seleccionado y el precio final. Consulta
+                nuestros términos y condiciones y nuestra política
+                de reembolso antes de comprar.
+            </p>
+
+        </section>
+
+
+        <!-- ===== CONTACTO ===== -->
+
+        <section class="store-section" id="contacto">
+
+            <div class="store-heading">
+                <h2>¿Tienes alguna duda?</h2>
+
+                <p>
+                    Ponte en contacto con United Glory a través de
+                    nuestros canales oficiales.
+                </p>
+            </div>
+
+            <div class="store-socials">
+
+                <!-- Sustituye los enlaces por los oficiales de UG Store. -->
+
+                <a
+                    href="https://discord.gg/6PBu5fKade"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Discord
+                </a>
+
+                <a
+                    href="https://www.instagram.com/united_glory_esport/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Instagram
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ===== FOOTER ===== -->
+
+    <footer class="store-footer">
+
+        <div class="footer-brand">
+            UG STORE
+        </div>
+
+        <p>
+            Una iniciativa digital de United Glory.
+        </p>
+
+        <nav class="legal-links" aria-label="Información legal">
+
+            <a href="/terminos-y-condiciones/">
+                Términos y condiciones
+            </a>
+
+            <a href="/derechos-de-autor/">
+                Derechos de autor
+            </a>
+
+            <a href="/politica-de-reembolso/">
+                Política de reembolso
+            </a>
+
+        </nav>
+
+        <p>
+            © <span id="current-year">2026</span>
+            United Glory. Todos los derechos reservados.
+        </p>
+
+        <p>
+            UG Store es un proyecto independiente.
+            Las marcas y nombres de terceros pertenecen a sus
+            respectivos propietarios.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT COMPARTIDO -->
+
+    <script src="/assets/js/navbar.js" defer></script>
+    <script src="/assets/js/monitor.js" defer></script>
+
+    <!-- Año del footer -->
+
+    <script>
+        document.getElementById("current-year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
