@@ -263,10 +263,10 @@ async function verificarID() {
       "Nickname: " + jugador.nickname +
       " | ID: " + jugador.accountId;
   } catch (error) {
-    resultado.textContent =
-      "No se pudo consultar la cuenta. Intenta más tarde.";
-    console.error("Error verificando UID:", error);
-  }
+  resultado.textContent =
+    "Error: " + error.message;
+  console.error("Error verificando UID:", error);
+ }
 }
 </script>
 
