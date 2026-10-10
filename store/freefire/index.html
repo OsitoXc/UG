@@ -207,55 +207,103 @@
             </div>
         </section>
 
-        <section class="ff-checkout" id="pedido">
-            <div class="ff-section-heading">
-                <h2 class="section-title">Prepara tu pedido</h2>
-                <p>Selecciona un paquete y completa los datos necesarios para identificar tu pedido.</p>
-            </div>
+        
 
-            <div class="ff-checkout-card">
-                <div class="ff-order-summary" id="orderSummary" aria-live="polite">
-                    <div class="ff-summary-label">Tu selección</div>
-                    <div class="ff-summary-row">
-                        <strong id="summaryProduct">Producto</strong>
-                        <span id="summaryPrice">Precio pendiente</span>
-                    </div>
-                </div>
+<section id="ug-verificador">
+  <h2>Verifica tu cuenta</h2>
+  <p>Introduce tu ID de Free Fire para consultar tu nickname.</p>
 
-                <p class="ff-empty" id="emptyMessage">Primero selecciona un paquete del catálogo.</p>
+  <form id="ug-form">
+    <label for="ug-uid">ID de jugador</label>
+    <input
+      id="ug-uid"
+      type="text"
+      inputmode="numeric"
+      pattern="[0-9]{5,20}"
+      placeholder="Ej. 504335008"
+      required
+    >
+    <button id="ug-button" type="submit">
+      Verificar cuenta
+    </button>
+  </form>
 
-                <form class="ff-form" id="orderForm">
-                    <div class="field">
-                        <label for="playerId">ID de jugador</label>
-                        <input id="playerId" name="playerId" type="text" inputmode="numeric" pattern="[0-9]{5,20}" minlength="5" maxlength="20" placeholder="Introduce tu ID de Free Fire" required>
-                        <span class="ff-hint">Comprueba que el ID sea correcto antes de enviar el pedido.</span>
-                    </div>
+  <div id="ug-result" role="status" aria-live="polite"></div>
+</section>
 
-                    <div class="field">
-                        <label for="playerName">Nombre en el juego (opcional)</label>
-                        <input id="playerName" name="playerName" type="text" maxlength="50" placeholder="Tu nickname">
-                    </div>
+<script>
+(() => {
+  const form = document.getElementById("ug-form");
+  const input = document.getElementById("ug-uid");
+  const button = document.getElementById("ug-button");
+  const result = document.getElementById("ug-result");
 
-                    <div class="field">
-                        <label for="customerEmail">Correo electrónico</label>
-                        <input id="customerEmail" name="customerEmail" type="email" maxlength="254" autocomplete="email" placeholder="tucorreo@ejemplo.com" required>
-                    </div>
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-                    <label class="ff-consent">
-                        <input type="checkbox" id="acceptTerms" required>
-                        <span>
-                            Confirmo que he revisado los datos de mi pedido y acepto los
-                            <a href="/terminos-y-condiciones/">términos y condiciones</a>
-                            y la
-                            <a href="/politica-de-reembolso/">política de reembolso</a>.
-                        </span>
-                    </label>
+    const uid = input.value.trim();
 
-                    <button class="ff-submit" id="submitOrder" type="submit" disabled>Selecciona un paquete</button>
-                    <p class="ff-hint" id="formMessage" aria-live="polite">Prototipo en desarrollo: todavía no se envían pedidos ni se procesan pagos.</p>
-                </form>
-            </div>
-        </section>
+    if (!/^\d{5,20}$/.test(uid)) {
+      result.textContent = "Introduce un ID válido.";
+      return;
+    }
+
+    button.disabled = true;
+    result.textContent = "Consultando jugador...";
+
+    try {
+      const url = new URL(
+        "https://star-info-api.lovable.app/functions/v1/info-api/accinfo"
+      );
+      url.searchParams.set("uid", uid);
+
+      const response = await fetch(url.toString());
+
+      if (!response.ok) {
+        throw new Error("API_ERROR");
+      }
+
+      const data = await response.json();
+
+      const nickname =
+        data?.data?.nickname ??
+        data?.data?.basicInfo?.nickname ??
+        data?.result?.basicInfo?.nickname ??
+        data?.basicInfo?.nickname ??
+        data?.nickname;
+
+      if (
+        data?.success === false ||
+        typeof nickname !== "string" ||
+        !nickname.trim()
+      ) {
+        result.textContent =
+          "No se pudo confirmar el jugador. Comprueba el ID.";
+        return;
+      }
+
+      result.replaceChildren();
+
+      const title = document.createElement("h3");
+      title.textContent = "Jugador encontrado";
+
+      const name = document.createElement("p");
+      name.textContent = "Nickname: " + nickname;
+
+      const playerId = document.createElement("p");
+      playerId.textContent = "ID: " + uid;
+
+      result.append(title, name, playerId);
+
+    } catch {
+      result.textContent =
+        "No se pudo conectar con el servicio. Puede estar fuera de servicio o bloquear la consulta.";
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+</script>
 
         <section>
             <div class="ff-section-heading">
