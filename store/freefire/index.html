@@ -209,100 +209,65 @@
 
         
 
+
 <section id="ug-verificador">
   <h2>Verifica tu cuenta</h2>
   <p>Introduce tu ID de Free Fire para consultar tu nickname.</p>
 
-  <form id="ug-form">
-    <label for="ug-uid">ID de jugador</label>
-    <input
-      id="ug-uid"
-      type="text"
-      inputmode="numeric"
-      pattern="[0-9]{5,20}"
-      placeholder="Ej. 504335008"
-      required
-    >
-    <button id="ug-button" type="submit">
-      Verificar cuenta
-    </button>
-  </form>
+  <input
+    type="text"
+    id="id_jugador"
+    placeholder="ID de jugador"
+    inputmode="numeric"
+  >
 
-  <div id="ug-result" role="status" aria-live="polite"></div>
+  <button type="button" onclick="verificarID()">
+    Verificar cuenta
+  </button>
+
+  <p id="resultado_nick" aria-live="polite"></p>
 </section>
 
 <script>
-(() => {
-  const form = document.getElementById("ug-form");
-  const input = document.getElementById("ug-uid");
-  const button = document.getElementById("ug-button");
-  const result = document.getElementById("ug-result");
+async function verificarID() {
+  const uid = document.getElementById("id_jugador").value.trim();
+  const resultado = document.getElementById("resultado_nick");
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  if (!/^\d+$/.test(uid)) {
+    resultado.textContent = "Introduce un ID válido.";
+    return;
+  }
 
-    const uid = input.value.trim();
+  resultado.textContent = "Consultando cuenta...";
 
-    if (!/^\d{5,20}$/.test(uid)) {
-      result.textContent = "Introduce un ID válido.";
+  try {
+    const url =
+      "https://freefireapis.lat/info-player?uid=" +
+      encodeURIComponent(uid) +
+      "&region=SAC";
+
+    const respuesta = await fetch(url);
+    if (!respuesta.ok) {
+      throw new Error("HTTP " + respuesta.status);
+    }
+
+    const datos = await respuesta.json();
+    const jugador = datos?.result?.basicInfo;
+
+    if (!datos.success || !jugador?.nickname) {
+      resultado.textContent = "No se encontró la cuenta.";
       return;
     }
 
-    button.disabled = true;
-    result.textContent = "Consultando jugador...";
-
-    try {
-      const url = new URL(
-        "https://star-info-api.lovable.app/functions/v1/info-api/accinfo"
-      );
-      url.searchParams.set("uid", uid);
-
-      const response = await fetch(url.toString());
-
-      if (!response.ok) {
-        throw new Error("API_ERROR");
-      }
-
-      const data = await response.json();
-
-      const nickname =
-        data?.data?.nickname ??
-        data?.data?.basicInfo?.nickname ??
-        data?.result?.basicInfo?.nickname ??
-        data?.basicInfo?.nickname ??
-        data?.nickname;
-
-      if (
-        data?.success === false ||
-        typeof nickname !== "string" ||
-        !nickname.trim()
-      ) {
-        result.textContent =
-          "No se pudo confirmar el jugador. Comprueba el ID.";
-        return;
-      }
-
-      result.replaceChildren();
-
-      const title = document.createElement("h3");
-      title.textContent = "Jugador encontrado";
-
-      const name = document.createElement("p");
-      name.textContent = "Nickname: " + nickname;
-
-      const playerId = document.createElement("p");
-      playerId.textContent = "ID: " + uid;
-
-      result.append(title, name, playerId);
-
-    } catch {
-      result.textContent =
-        "No se pudo conectar con el servicio. Puede estar fuera de servicio o bloquear la consulta.";
-    } finally {
-      button.disabled = false;
-    }
-  });
-})();
+    resultado.textContent =
+      "Nickname: " + jugador.nickname +
+      " | ID: " + jugador.accountId;
+  } catch (error) {
+    resultado.textContent =
+      "No se pudo consultar la cuenta. Intenta más tarde.";
+    console.error("Error verificando UID:", error);
+  }
+}
 </script>
 
         <section>
