@@ -229,11 +229,12 @@
 </section>
 
 <script>
+
 async function verificarID() {
   const uid = document.getElementById("id_jugador").value.trim();
   const resultado = document.getElementById("resultado_nick");
 
-  if (!/^\d+$/.test(uid)) {
+  if (!/^\d{5,20}$/.test(uid)) {
     resultado.textContent = "Introduce un ID válido.";
     return;
   }
@@ -242,19 +243,21 @@ async function verificarID() {
 
   try {
     const url =
-      "https://freefireapis.lat/info-player?uid=" +
-      encodeURIComponent(uid) +
-      "&region=SAC";
+      "https://withered-dust-f7e5.fg2008gon.workers.dev/?uid=" +
+      encodeURIComponent(uid);
 
     const respuesta = await fetch(url);
-    if (!respuesta.ok) {
-      throw new Error("HTTP " + respuesta.status);
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok || !datos.success) {
+      throw new Error(
+        datos.error || "No se pudo consultar la cuenta."
+      );
     }
 
-    const datos = await respuesta.json();
     const jugador = datos?.result?.basicInfo;
 
-    if (!datos.success || !jugador?.nickname) {
+    if (!jugador?.nickname) {
       resultado.textContent = "No se encontró la cuenta.";
       return;
     }
@@ -262,12 +265,15 @@ async function verificarID() {
     resultado.textContent =
       "Nickname: " + jugador.nickname +
       " | ID: " + jugador.accountId;
+
   } catch (error) {
-  resultado.textContent =
-    "Error: " + error.message;
-  console.error("Error verificando UID:", error);
- }
+    resultado.textContent =
+      "No se pudo verificar la cuenta. Inténtalo de nuevo.";
+
+    console.error("Error verificando UID:", error);
+  }
 }
+
 </script>
 
         <section>
