@@ -123,6 +123,106 @@
             .ff-price { font-size: 17px; }
             .ff-steps { grid-template-columns: 1fr; }
         }
+
+        
+/* UG Store: compra regional */
+.ff-region {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.ff-region label,
+.ff-new-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #d1d5db;
+}
+
+.ff-region select,
+.ff-new-input,
+.ff-payment-option {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #0c0d11;
+    color: #fff;
+    font: inherit;
+}
+
+.ff-new-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 22px;
+    scroll-margin-top: 90px;
+}
+
+.ff-new-section h2 {
+    margin-top: 0;
+    font-size: 19px;
+}
+
+.ff-new-hint {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.ff-player-result {
+    display: none;
+    padding: 14px;
+    margin-top: 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow-wrap: anywhere;
+}
+
+.ff-player-result.visible {
+    display: block;
+}
+
+.ff-player-result strong {
+    color: var(--accent);
+}
+
+.ff-player-subtitle {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+    margin-top: 6px;
+}
+
+.ff-new-section .ff-submit {
+    margin-top: 12px;
+}
+
+.ff-payment-option {
+    display: block;
+    margin: 10px 0;
+    text-align: left;
+    cursor: pointer;
+}
+
+.ff-payment-option:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+}
+
+.ff-payment-option strong,
+.ff-payment-option span {
+    display: block;
+}
+
+.ff-payment-option span {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
     </style>
 </head>
 
