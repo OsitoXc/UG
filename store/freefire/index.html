@@ -505,63 +505,197 @@ async function verificarID() {
     <script src="/assets/js/monitor.js" defer></script>
 
     <script>
-    (() => {
-        const products = document.querySelectorAll(".ff-product");
-        const summary = document.getElementById("orderSummary");
-        const emptyMessage = document.getElementById("emptyMessage");
-        const summaryProduct = document.getElementById("summaryProduct");
-        const summaryPrice = document.getElementById("summaryPrice");
-        const submitButton = document.getElementById("submitOrder");
-        const form = document.getElementById("orderForm");
-        const message = document.getElementById("formMessage");
-        let selectedProduct = null;
+    
+(() => {
+    const country = document.getElementById("ff-country");
+    const accountForm = document.getElementById("ff-account-form");
+    const uidInput = document.getElementById("id_jugador");
+    const result = document.getElementById("resultado_nick");
+    const login = document.getElementById("ff-login");
+    const summary = document.getElementById("ff-selected-summary");
+    const note = document.getElementById("ff-currency-note");
+    const checkoutMessage = document.getElementById("ff-checkout-message");
 
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    let verifiedPlayer = null;
+    let selectedProduct = null;
 
-        products.forEach((card) => {
-            const button = card.querySelector(".ff-select-btn");
-            button.addEventListener("click", () => {
-                const priceValue = button.dataset.price;
-                if (!priceValue || !Number.isFinite(Number(priceValue))) {
-                    message.textContent = "Este paquete todavía no tiene un precio confirmado.";
-                    return;
-                }
+    // Tasas aproximadas SOLO para la vista previa.
+    // No son precios comerciales ni tipos de cambio en tiempo real.
+    const currencies = {
+        MX: {
+            currency: "MXN",
+            locale: "es-MX",
+            rate: 1,
+            note: "Precios base en pesos mexicanos."
+        },
+        CO: {
+            currency: "COP",
+            locale: "es-CO",
+            rate: 220,
+            note: "Vista previa estimada; define los precios finales en COP."
+        },
+        PE: {
+            currency: "PEN",
+            locale: "es-PE",
+            rate: 0.22,
+            note: "Vista previa estimada; define los precios finales en PEN."
+        },
+        LATAM: {
+            currency: "USD",
+            locale: "en-US",
+            rate: 0.058,
+            note: "Vista previa estimada en USD; no implica disponibilidad en todos los países."
+        }
+    };
 
-                selectedProduct = {
-                    id: button.dataset.id,
-                    name: button.dataset.name,
-                    price: Number(priceValue)
-                };
+    function money(amount) {
+        const config = currencies[country.value];
+        return new Intl.NumberFormat(config.locale, {
+            style: "currency",
+            currency: config.currency,
+            maximumFractionDigits: config.currency === "COP" ? 0 : 2
+        }).format(amount * config.rate);
+    }
 
-                products.forEach((item) => {
-                    item.classList.remove("selected");
-                    item.querySelector(".ff-select-btn").textContent = "Seleccionar";
-                });
+    function updatePrices() {
+        const config = currencies[country.value];
+        note.textContent = config.note;
 
-                card.classList.add("selected");
-                button.textContent = "Seleccionado";
-                summaryProduct.textContent = selectedProduct.name;
-                summaryPrice.textContent = "$" + selectedProduct.price.toFixed(2) + " MXN";
-                summary.classList.add("visible");
-                emptyMessage.hidden = true;
-                submitButton.disabled = false;
-                submitButton.textContent = "Revisar pedido";
-                message.textContent = "Prototipo en desarrollo: todavía no se envían pedidos ni se procesan pagos.";
+        document.querySelectorAll(".ff-price[data-price]").forEach((el) => {
+            el.textContent = money(Number(el.dataset.price));
+        });
 
-                document.getElementById("pedido").scrollIntoView({ behavior: "smooth", block: "start" });
+        if (selectedProduct) {
+            summary.textContent =
+                selectedProduct.name + " · " +
+                money(selectedProduct.price) +
+                " · UID " + verifiedPlayer.uid +
+                " · " + verifiedPlayer.nickname;
+        }
+    }
+
+    country.addEventListener("change", () => {
+        updatePrices();
+        // Cambiar el país no significa que se haya verificado
+        // la región real de la cuenta de Free Fire.
+    });
+
+    document.querySelectorAll(".ff-select-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+            selectedProduct = {
+                id: button.dataset.id,
+                name: button.dataset.name,
+                price: Number(button.dataset.price)
+            };
+
+            document.querySelectorAll(".ff-product").forEach((card) => {
+                card.classList.remove("selected");
+                card.querySelector(".ff-select-btn").textContent =
+                    "Seleccionar";
+            });
+
+            const card = button.closest(".ff-product");
+            card.classList.add("selected");
+            button.textContent = "Seleccionado";
+
+            if (verifiedPlayer) {
+                updatePrices();
+            } else {
+                summary.textContent =
+                    selectedProduct.name + " · " +
+                    money(selectedProduct.price) +
+                    ". Verifica tu cuenta para continuar.";
+            }
+
+            checkoutMessage.textContent =
+                "Vista previa del pedido. El pago aún no está conectado.";
+            document.getElementById("ff-pago").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
             });
         });
+    });
 
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            if (!selectedProduct) {
-                message.textContent = "Selecciona un paquete con precio confirmado.";
-                return;
+    accountForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const uid = uidInput.value.trim();
+
+        if (!/^\d{5,20}$/.test(uid)) {
+            result.classList.add("visible");
+            result.textContent = "Introduce un ID válido.";
+            return;
+        }
+
+        login.disabled = true;
+        login.textContent = "Consultando...";
+        result.classList.add("visible");
+        result.textContent = "Consultando la cuenta de Free Fire...";
+        verifiedPlayer = null;
+
+        try {
+            const url =
+                "https://withered-dust-f7e5.fg2008gon.workers.dev/?uid=" +
+                encodeURIComponent(uid);
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.error || "No se encontró la cuenta.");
             }
-            if (!form.reportValidity()) return;
-            message.textContent = "Este es un prototipo. El sistema de pedidos todavía no está conectado. No se ha enviado ninguna solicitud ni realizado ningún cobro.";
-        });
-    })();
+
+            const info = data?.result?.basicInfo;
+
+            if (!info?.nickname) {
+                throw new Error("No se encontró el nickname.");
+            }
+
+            verifiedPlayer = {
+                uid: String(info.accountId || uid),
+                nickname: info.nickname,
+                region: info.region || info.región || "No informada"
+            };
+
+            result.innerHTML = "";
+
+            const nickname = document.createElement("strong");
+            nickname.textContent = verifiedPlayer.nickname;
+
+            const subtitle = document.createElement("div");
+            subtitle.className = "ff-player-subtitle";
+            subtitle.textContent =
+                "ID: " + verifiedPlayer.uid +
+                " · Región de cuenta: " + verifiedPlayer.region;
+
+            result.append(nickname, subtitle);
+
+            if (selectedProduct) {
+                updatePrices();
+            } else {
+                summary.textContent =
+                    "Cuenta verificada: " + verifiedPlayer.nickname +
+                    ". Ahora selecciona un paquete.";
+            }
+
+            checkoutMessage.textContent =
+                "Cuenta consultada. El sistema de pago todavía no está conectado.";
+        } catch (error) {
+            result.textContent =
+                "No se pudo verificar la cuenta. Inténtalo de nuevo.";
+            console.error("Error verificando UID:", error);
+        } finally {
+            login.disabled = false;
+            login.textContent = "Iniciar sesión";
+        }
+    });
+
+    const year = document.getElementById("currentYear");
+    if (year) year.textContent = new Date().getFullYear();
+
+    updatePrices();
+})();
+
     </script>
 </body>
 </html>
