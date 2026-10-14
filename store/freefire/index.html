@@ -250,83 +250,179 @@
             </div>
         </section>
 
-        <section id="productos">
-            <div class="ff-section-heading">
-                <h2 class="section-title">Paquetes de diamantes</h2>
-                <p>Selecciona el paquete que deseas para comenzar a preparar tu pedido.</p>
-            </div>
-
-            <div class="ff-products">
-                <article class="ff-product" data-product="110">
-                    <div class="ff-product-image"><img src="/assets/img/1.png" alt="Diamantes de Free Fire" loading="lazy"></div>
-                    <h3>110 diamantes</h3>
-                    <p class="ff-product-description">Paquete de diamantes.</p>
-                    <div class="ff-price">$18 MXN</div>
-                    <button class="ff-select-btn" type="button" data-id="110" data-name="110 diamantes" data-price="18">Seleccionar</button>
-                </article>
-
-                <article class="ff-product" data-product="341">
-                    <div class="ff-product-image"><img src="/assets/img/1.png" alt="Diamantes de Free Fire" loading="lazy"></div>
-                    <h3>341 diamantes</h3>
-                    <p class="ff-product-description">Paquete de diamantes.</p>
-                    <div class="ff-price">$50 MXN</div>
-                    <button class="ff-select-btn" type="button" data-id="341" data-name="341 diamantes" data-price="50">Seleccionar</button>
-                </article>
-
-                <article class="ff-product" data-product="572">
-                    <div class="ff-product-image"><img src="/assets/img/1.png" alt="Diamantes de Free Fire" loading="lazy"></div>
-                    <h3>572 diamantes</h3>
-                    <p class="ff-product-description">Paquete de diamantes.</p>
-                    <div class="ff-price">$84 MXN</div>
-                    <button class="ff-select-btn" type="button" data-id="572" data-name="572 diamantes" data-price="84">Seleccionar</button>
-                </article>
-
-                <article class="ff-product" data-product="1166">
-                    <div class="ff-product-image"><img src="/assets/img/2.png" alt="Diamantes de Free Fire" loading="lazy"></div>
-                    <h3>1166 diamantes</h3>
-                    <p class="ff-product-description">Paquete de diamantes.</p>
-                    <div class="ff-price">$156 MXN</div>
-                    <button class="ff-select-btn" type="button" data-id="1166" data-name="1166 diamantes" data-price="156">Seleccionar</button>
-                </article>
-
-                <article class="ff-product" data-product="2398">
-                    <div class="ff-product-image"><img src="/assets/img/3.png" alt="Diamantes de Free Fire" loading="lazy"></div>
-                    <h3>2398 diamantes</h3>
-                    <p class="ff-product-description">Paquete de diamantes.</p>
-                    <div class="ff-price">$299 MXN</div>
-                    <button class="ff-select-btn" type="button" data-id="2398" data-name="2398 diamantes" data-price="299">Seleccionar</button>
-                </article>
-
-                <article class="ff-product" data-product="6160">
-                    <div class="ff-product-image"><img src="/assets/img/4.png" alt="Diamantes de Free Fire" loading="lazy"></div>
-                    <h3>6160 diamantes</h3>
-                    <p class="ff-product-description">Paquete de diamantes.</p>
-                    <div class="ff-price">$760 MXN</div>
-                    <button class="ff-select-btn" type="button" data-id="6160" data-name="6160 diamantes" data-price="760">Seleccionar</button>
-                </article>
-            </div>
-        </section>
-
         
+<!-- PAÍS Y MONEDA -->
+<section class="ff-new-section" id="ff-pais">
+    <div class="ff-section-heading">
+        <h2>País y moneda</h2>
+        <p>Selecciona la región para consultar los precios de tu tienda.</p>
+    </div>
 
-
-<section id="ug-verificador">
-  <h2>Verifica tu cuenta</h2>
-  <p>Introduce tu ID de Free Fire para consultar tu nickname.</p>
-
-  <input
-    type="text"
-    id="id_jugador"
-    placeholder="ID de jugador"
-    inputmode="numeric"
-  >
-
-  <button type="button" onclick="verificarID()">
-    Verificar cuenta
-  </button>
-
-  <p id="resultado_nick" aria-live="polite"></p>
+    <div class="ff-region">
+        <label for="ff-country">Tu país o región</label>
+        <select id="ff-country">
+            <option value="MX">México · MXN</option>
+            <option value="CO">Colombia · COP</option>
+            <option value="PE">Perú · PEN</option>
+            <option value="LATAM">Internacional LATAM · USD</option>
+        </select>
+        <p class="ff-new-hint" id="ff-currency-note">
+            Precios base en pesos mexicanos.
+        </p>
+    </div>
 </section>
+
+<!-- PASO 1: CUENTA -->
+<section class="ff-new-section" id="ff-cuenta">
+    <h2>1. Ingresar</h2>
+    <p class="ff-new-hint">
+        Introduce tu ID de jugador para consultar tu nickname.
+        No necesitas compartir tu contraseña.
+    </p>
+
+    <form id="ff-account-form">
+        <label class="ff-new-label" for="id_jugador">
+            ID de jugador
+        </label>
+        <input
+            class="ff-new-input"
+            type="text"
+            id="id_jugador"
+            inputmode="numeric"
+            autocomplete="off"
+            placeholder="Introduce el ID del jugador aquí."
+            required
+            pattern="[0-9]{5,20}"
+        >
+
+        <button class="ff-submit" type="submit" id="ff-login">
+            Iniciar sesión
+        </button>
+    </form>
+
+    <div id="resultado_nick" class="ff-player-result"
+         aria-live="polite"></div>
+</section>
+
+<!-- PASO 2: RECARGA -->
+<section class="ff-new-section" id="productos">
+    <div class="ff-section-heading">
+        <h2>2. Monto de recarga</h2>
+        <p>Selecciona el paquete que deseas comprar.</p>
+    </div>
+
+    <div class="ff-products">
+        <article class="ff-product" data-product="110">
+            <div class="ff-product-image">
+                <img src="/assets/img/1.png" alt="Diamantes"
+                     loading="lazy">
+            </div>
+            <h3>110 diamantes</h3>
+            <p class="ff-product-description">Paquete de diamantes.</p>
+            <div class="ff-price" data-price="18">$18 MXN</div>
+            <button class="ff-select-btn" type="button"
+                data-id="110" data-name="110 diamantes"
+                data-price="18">Seleccionar</button>
+        </article>
+
+        <article class="ff-product" data-product="341">
+            <div class="ff-product-image">
+                <img src="/assets/img/1.png" alt="Diamantes"
+                     loading="lazy">
+            </div>
+            <h3>341 diamantes</h3>
+            <p class="ff-product-description">Paquete de diamantes.</p>
+            <div class="ff-price" data-price="50">$50 MXN</div>
+            <button class="ff-select-btn" type="button"
+                data-id="341" data-name="341 diamantes"
+                data-price="50">Seleccionar</button>
+        </article>
+
+        <article class="ff-product" data-product="572">
+            <div class="ff-product-image">
+                <img src="/assets/img/1.png" alt="Diamantes"
+                     loading="lazy">
+            </div>
+            <h3>572 diamantes</h3>
+            <p class="ff-product-description">Paquete de diamantes.</p>
+            <div class="ff-price" data-price="84">$84 MXN</div>
+            <button class="ff-select-btn" type="button"
+                data-id="572" data-name="572 diamantes"
+                data-price="84">Seleccionar</button>
+        </article>
+
+        <article class="ff-product" data-product="1166">
+            <div class="ff-product-image">
+                <img src="/assets/img/2.png" alt="Diamantes"
+                     loading="lazy">
+            </div>
+            <h3>1166 diamantes</h3>
+            <p class="ff-product-description">Paquete de diamantes.</p>
+            <div class="ff-price" data-price="156">$156 MXN</div>
+            <button class="ff-select-btn" type="button"
+                data-id="1166" data-name="1166 diamantes"
+                data-price="156">Seleccionar</button>
+        </article>
+
+        <article class="ff-product" data-product="2398">
+            <div class="ff-product-image">
+                <img src="/assets/img/3.png" alt="Diamantes"
+                     loading="lazy">
+            </div>
+            <h3>2398 diamantes</h3>
+            <p class="ff-product-description">Paquete de diamantes.</p>
+            <div class="ff-price" data-price="299">$299 MXN</div>
+            <button class="ff-select-btn" type="button"
+                data-id="2398" data-name="2398 diamantes"
+                data-price="299">Seleccionar</button>
+        </article>
+
+        <article class="ff-product" data-product="6160">
+            <div class="ff-product-image">
+                <img src="/assets/img/4.png" alt="Diamantes"
+                     loading="lazy">
+            </div>
+            <h3>6160 diamantes</h3>
+            <p class="ff-product-description">Paquete de diamantes.</p>
+            <div class="ff-price" data-price="760">$760 MXN</div>
+            <button class="ff-select-btn" type="button"
+                data-id="6160" data-name="6160 diamantes"
+                data-price="760">Seleccionar</button>
+        </article>
+    </div>
+
+    <p class="ff-new-hint" id="ff-product-note">
+        Los precios internacionales deben confirmarse antes de vender.
+    </p>
+</section>
+
+<!-- PASO 3: PAGO -->
+<section class="ff-new-section" id="ff-pago">
+    <h2>3. Métodos de pago</h2>
+    <p class="ff-new-hint">
+        Las opciones de pago estarán disponibles cuando se conecte
+        una pasarela compatible con tu país.
+    </p>
+
+    <div id="ff-selected-summary" class="ff-notice">
+        Primero verifica tu cuenta y selecciona un paquete.
+    </div>
+
+    <button class="ff-payment-option" type="button" disabled>
+        <strong>Tarjeta bancaria</strong>
+        <span>Pendiente de configuración</span>
+    </button>
+
+    <button class="ff-payment-option" type="button" disabled>
+        <strong>Otros métodos locales</strong>
+        <span>Dependerán del país y de la pasarela elegida</span>
+    </button>
+
+    <p class="ff-new-hint" id="ff-checkout-message" aria-live="polite">
+        Todavía no se procesan pagos ni se envían pedidos.
+    </p>
+</section>
+
 
 <script>
 
